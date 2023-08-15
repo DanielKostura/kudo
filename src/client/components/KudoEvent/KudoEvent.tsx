@@ -2,7 +2,7 @@ import React from 'react';
 import * as I from '../../../common/interfaces';
 import { select } from '../../utils/api';
 import { getKudoKnight, getKudoNumberList } from '../../utils/client';
-import { Knight } from '../Knight/Knight';
+import { Knight, KnightForUser } from '../Knight/Knight';
 import { EventInfo } from '../EventInfo/EventInfo';
 import KudoForm from '../KudoForm/KudoForm';
 import Card, { Props } from '../Card/Card';
@@ -10,6 +10,7 @@ import CardNotification from '../CardNotification/CardNotification';
 import KudoSettings from '../KudoSettings/KudoSettings';
 import './KudoEvent.css';
 import QRcode from '../QRcode/QRcode';
+import { getCookie } from '../../utils/client';
 
 const MODAL_INTERVAL = 120 * 1000;
 const MODAL_TIME = 120 * 1000;
@@ -22,6 +23,8 @@ interface IState {
   shouldDisplayModal: boolean;
   nameList: I.People[];
   nameListLoading: boolean;
+  role: string | false; /*zmena*/
+  show: boolean; /*zmena*/
 }
 
 function CardModal({ newCardProps, onClick }: any) {
@@ -35,7 +38,7 @@ function CardModal({ newCardProps, onClick }: any) {
       </div>
     </div>
   );
-}
+} 
 
 export default class KudoEvent extends React.Component<{}, IState> {
   private eventId: string;
@@ -44,6 +47,7 @@ export default class KudoEvent extends React.Component<{}, IState> {
   private bind: {
     onCardListRefresh: EventListener;
     onHideModal: () => void;
+    ukaz: () => void; /*zmena*/
   };
 
   constructor(props: any) {
@@ -55,11 +59,15 @@ export default class KudoEvent extends React.Component<{}, IState> {
       is_active: false,
       shouldDisplayModal: false,
       nameList: [],
-      nameListLoading: true
+      nameListLoading: true,
+      show: false, /*zmena*/
+      role: getCookie('connect.role') /*zmena*/
     };
+
     this.bind = {
       onCardListRefresh: this.onCardListRefresh.bind(this) as EventListener,
-      onHideModal: this.onHideModal.bind(this)
+      onHideModal: this.onHideModal.bind(this),
+      ukaz: this.ukaz.bind(this) /*zmena*/
     };
   }
 
@@ -74,6 +82,7 @@ export default class KudoEvent extends React.Component<{}, IState> {
   }
 
   componentDidUpdate(_prevProps: any, prevState: any) {
+    
     if (prevState.cards.length < this.state.cards.length && !this.state.shouldDisplayModal) {
       const new_card = this.state.cards[this.state.cards.length - 1];
       const diff = new Date().getTime() - MODAL_INTERVAL;
@@ -108,6 +117,7 @@ export default class KudoEvent extends React.Component<{}, IState> {
             <KudoForm isLoading={this.state.nameListLoading} peopleList={this.state.nameList} eventId={this.eventId} isActive={this.state.is_active} />
           )}
         </div>
+        <button type = "button" onClick = {this.bind.ukaz}>click me</button>
         <div className="event_cards">{this.processCards()}</div>
         <CardNotification />
         {this.state.shouldDisplayModal ? <CardModal newCardProps={newCard} onClick={this.bind.onHideModal} /> : null}
@@ -116,6 +126,10 @@ export default class KudoEvent extends React.Component<{}, IState> {
     ) : (
       <div />
     );
+  }
+
+  private ukaz(): void { /*zmena*/
+    this.setState({ show: !this.state.show });
   }
 
   private onHideModal(): void {
@@ -134,7 +148,7 @@ export default class KudoEvent extends React.Component<{}, IState> {
         document.dispatchEvent(new CustomEvent('kudoz::newNotification'));
       }
 
-      data.sort((a, b) => b.likes - a.likes);
+      /*data.sort((a, b) => b.likes - a.likes);*//* odstranenie zoradzovania*/
       this.setState({ cards: data });
     });
 
@@ -214,11 +228,24 @@ export default class KudoEvent extends React.Component<{}, IState> {
   private getKnight(): JSX.Element {
     // TODO get most frequent name from array
     const list = getKudoNumberList(this.state.cards);
-    return (
-      <div style={{position: 'relative'}}>
-        <div className="kudo-info-points" title={list.map((person) => `${person.name}:${person.count}`).join(', ')}>i</div>
-        <Knight {...{ mostKudos: getKudoKnight(list) }} />
-      </div>
-    );
+    if(this.state.role === 'admin' || this.state.is_active === false || this.state.show === true){ /*zmena pridanie if a role*/
+      return (
+        <div style={{position: 'relative'}}>
+          <div className="kudo-info-points" title={list.map((person) => `${person.name}:${person.count}`).join(', ')}>i</div>
+          <Knight {...{ mostKudos: getKudoKnight(list) }} />
+        </div>
+      );
+
+    }
+    else{
+      return (
+        <div style={{position: 'relative'}}>
+          <div className="kudo-info-points" title={list.map((person) => `${person.name}:${person.count}`).join(', ')}>i</div>
+          <KnightForUser {...{ mostKudos: getKudoKnight(list) }} />
+        </div>
+      );
+    }
+    
+
   }
 }
