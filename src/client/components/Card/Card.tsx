@@ -19,7 +19,7 @@ export interface Props {
 
 export interface State {
   voted: boolean;
-  role: string | false; /*zmena*/
+  role: string | false; /*zmenaLikes pridanie typu role*/
 }
 
 export default class Card extends Component<Props, State> {
@@ -27,7 +27,7 @@ export default class Card extends Component<Props, State> {
     super(props);
     this.state = {
       voted: false,
-      role: getCookie('connect.role') /*zmena*/
+      role: getCookie('connect.role') /*zmenaLikes zistenie role*/
     };
   }
 
@@ -90,36 +90,40 @@ export default class Card extends Component<Props, State> {
       );
     } 
     
-    else if (this.yourChoice(this.props.eventID, this.props.cardID!) && this.state.role != "admin") { /* ked user uz lajkol*/
-      return (
-        <div className="card__likes-yourChoice" title="your choice">
-          ?
-        </div>
-      );
+    else if(this.state.role != "admin"){ /*ked si user*/
+      if (this.yourChoice(this.props.eventID, this.props.cardID!)) { /* user po liku*/
+        return (
+          <div className="card__likes-yourChoice" title="your choice">
+            ?
+          </div>
+        );
+      }
+
+      else{ /* user pred likom*/
+        return (
+          <div
+            onClick={this.vote}
+            data-eventid={this.props.eventID}
+            data-cardid={this.props.cardID!}
+            className="card__likes"
+            title="vote!!!">
+            ?
+          </div>
+        );
+      }
     }
 
-    else if(this.state.role != "admin"){ /* ked nie si admin pred laknutym*/
-      return (
-        <div
-          onClick={this.vote}
-          data-eventid={this.props.eventID}
-          data-cardid={this.props.cardID!}
-          className="card__likes"
-          title="vote!!!">
-          ?
-        </div>
-      );
-    }
     
-    else {
-      if (this.yourChoice(this.props.eventID, this.props.cardID!)) { /* ked si admin a uz lajkol*/
+    else {/*ked si admin*/
+      if (this.yourChoice(this.props.eventID, this.props.cardID!)) { /*admin po liku*/
       return (
         <div className="card__likes-yourChoice" title="your choice">
           {this.props.likes}
         </div>
       );
     }
-      else{
+
+      else{ /*admin pred likom*/
         return (
           <div
             onClick={this.vote}
