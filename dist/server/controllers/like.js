@@ -28,7 +28,7 @@ function cLike(req, res) {
     const cards = DB.get('cards');
     let cardData;
     let eventData;
-    let likes; /*number*/
+    let likes;
     cards
         // select card because we need eventId and fresh value of likes
         .findOne({ _id })
@@ -52,7 +52,7 @@ function cLike(req, res) {
         }
         const now = new Date().getTime();
         if (eventData.dateFrom <= now && now <= eventData.dateTo) {
-            likes = cardData.likes + 1; /* Odstrnit +1*/
+            likes = cardData.likes + 1; /* Odstrnit +1 like*/
             return cards.update({ _id }, { $set: { likes } });
         }
         else {
