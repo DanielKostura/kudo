@@ -2,7 +2,9 @@ import React, { Component } from 'react';
 import { CARD_TYPE } from '../../../common/constants';
 import { CardIcon } from '../CardIcon/CardIcon';
 import { like } from '../../utils/api';
+import { getCookie } from '../../utils/client';
 import './Card.css';
+
 
 export interface Props {
   awarded: string;
@@ -17,13 +19,15 @@ export interface Props {
 
 export interface State {
   voted: boolean;
+  role: string | false; /*zmena*/
 }
 
 export default class Card extends Component<Props, State> {
   constructor(props: Props) {
     super(props);
     this.state = {
-      voted: false
+      voted: false,
+      role: getCookie('connect.role') /*zmena*/
     };
   }
 
@@ -76,31 +80,57 @@ export default class Card extends Component<Props, State> {
     }
     return;
   };
-
-  private getVoteButton() {
-    if (this.props.isActive === false) {
-      return (
-        <div className="card__likes-noVote" title="event is inactive">
+  
+  private getVoteButton() { /*zmena pridanie if*/
+    if (this.props.isActive === false) { /*ked je event neaktivny pre vsetkych*/
+        return (
+        <div className="card__likes-noVote" title="event is inactive"> 
           {this.props.likes}
         </div>
       );
-    } else if (this.yourChoice(this.props.eventID, this.props.cardID!)) {
+    } 
+    
+    else if (this.yourChoice(this.props.eventID, this.props.cardID!) && this.state.role != "admin") { /* ked user uz lajkol*/
       return (
         <div className="card__likes-yourChoice" title="your choice">
-          {this.props.likes}
+          ?
         </div>
       );
-    } else {
+    }
+
+    else if(this.state.role != "admin"){ /* ked nie si admin pred laknutym*/
       return (
         <div
           onClick={this.vote}
           data-eventid={this.props.eventID}
           data-cardid={this.props.cardID!}
           className="card__likes"
-          title="vote">
+          title="vote!!!">
+          ?
+        </div>
+      );
+    }
+    
+    else {
+      if (this.yourChoice(this.props.eventID, this.props.cardID!)) { /* ked si admin a uz lajkol*/
+      return (
+        <div className="card__likes-yourChoice" title="your choice">
           {this.props.likes}
         </div>
       );
+    }
+      else{
+        return (
+          <div
+            onClick={this.vote}
+            data-eventid={this.props.eventID}
+            data-cardid={this.props.cardID!}
+            className="card__likes"
+            title="vote!!!">
+            {this.props.likes}
+          </div>
+        );
+      }
     }
   }
 
