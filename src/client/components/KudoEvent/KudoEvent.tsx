@@ -23,8 +23,8 @@ interface IState {
   shouldDisplayModal: boolean;
   nameList: I.People[];
   nameListLoading: boolean;
-  role: string | false; /*zmena*/
-  show: boolean; /*zmena*/
+  role: string | false; /*zmenaKnight pridanie typu role*/
+  /*show: boolean; /*zmenaButton pridanie typu premennej*/
 }
 
 function CardModal({ newCardProps, onClick }: any) {
@@ -47,7 +47,7 @@ export default class KudoEvent extends React.Component<{}, IState> {
   private bind: {
     onCardListRefresh: EventListener;
     onHideModal: () => void;
-    ukaz: () => void; /*zmena*/
+    /*ukaz: () => void; /*zmenaButton pridanie typ outputu ukaz funkcie*/
   };
 
   constructor(props: any) {
@@ -60,14 +60,14 @@ export default class KudoEvent extends React.Component<{}, IState> {
       shouldDisplayModal: false,
       nameList: [],
       nameListLoading: true,
-      show: false, /*zmena*/
-      role: getCookie('connect.role') /*zmena*/
+      /*show: false,*/ /*zmenaButton def show premennej*/
+      role: getCookie('connect.role') /*zmenaKnight zistenie role*/
     };
 
     this.bind = {
       onCardListRefresh: this.onCardListRefresh.bind(this) as EventListener,
       onHideModal: this.onHideModal.bind(this),
-      ukaz: this.ukaz.bind(this) /*zmena*/
+      /*ukaz: this.ukaz.bind(this) /*zmenaButton*/
     };
   }
 
@@ -117,7 +117,6 @@ export default class KudoEvent extends React.Component<{}, IState> {
             <KudoForm isLoading={this.state.nameListLoading} peopleList={this.state.nameList} eventId={this.eventId} isActive={this.state.is_active} />
           )}
         </div>
-        <button type = "button" onClick = {this.bind.ukaz}>click me</button>
         <div className="event_cards">{this.processCards()}</div>
         <CardNotification />
         {this.state.shouldDisplayModal ? <CardModal newCardProps={newCard} onClick={this.bind.onHideModal} /> : null}
@@ -128,9 +127,12 @@ export default class KudoEvent extends React.Component<{}, IState> {
     );
   }
 
-  private ukaz(): void { /*zmena*/
+  /*zmenaButton vytvorenie buttonu a funkcie ktora na neho odkazuje
+  <button type = "button" onClick = {this.bind.ukaz}>click me</button>
+  private ukaz(): void { 
     this.setState({ show: !this.state.show });
   }
+  */
 
   private onHideModal(): void {
     this.setState({ shouldDisplayModal: false });
@@ -148,7 +150,7 @@ export default class KudoEvent extends React.Component<{}, IState> {
         document.dispatchEvent(new CustomEvent('kudoz::newNotification'));
       }
 
-      /*data.sort((a, b) => b.likes - a.likes);*//* odstranenie zoradzovania*/
+      /*data.sort((a, b) => b.likes - a.likes);*//* zmenaSort*/
       this.setState({ cards: data });
     });
 
@@ -228,7 +230,7 @@ export default class KudoEvent extends React.Component<{}, IState> {
   private getKnight(): JSX.Element {
     // TODO get most frequent name from array
     const list = getKudoNumberList(this.state.cards);
-    if(this.state.role === 'admin' || this.state.is_active === false || this.state.show === true){ /*zmena pridanie if a role*/
+    if(this.state.role === 'admin' || this.state.is_active === false){ /*zmenaKnight if*/
       return (
         <div style={{position: 'relative'}}>
           <div className="kudo-info-points" title={list.map((person) => `${person.name}:${person.count}`).join(', ')}>i</div>
