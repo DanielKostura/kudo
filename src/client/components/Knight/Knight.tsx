@@ -24,7 +24,7 @@ export const KnightForUser = (props: Props) => ( /*zmenaKnight pridanie KnightFo
     </div>
     <div className="kudoKnight__content">
       <h3>Kudo Knight</h3>
-      <h2>NO NAME</h2>
+      <h2>?</h2>
     </div>
   </div>
 );

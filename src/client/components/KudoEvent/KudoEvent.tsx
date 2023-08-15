@@ -242,12 +242,10 @@ export default class KudoEvent extends React.Component<{}, IState> {
     else{
       return (
         <div style={{position: 'relative'}}>
-          <div className="kudo-info-points" title={list.map((person) => `${person.name}:${person.count}`).join(', ')}>i</div>
           <KnightForUser {...{ mostKudos: getKudoKnight(list) }} />
         </div>
       );
     }
-    
 
   }
 }

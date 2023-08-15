@@ -62,7 +62,7 @@ exports.KnightForUser = (props) => ( /*zmenaKnight pridanie KnightForUser*/React
         React.createElement("img", { src: "/img/007-crusader.png" })),
     React.createElement("div", { className: "kudoKnight__content" },
         React.createElement("h3", null, "Kudo Knight"),
-        React.createElement("h2", null, "NO NAME"))));
+        React.createElement("h2", null, "?"))));
 
 
 /***/ }),
@@ -516,10 +516,10 @@ class Card extends react_1.Component {
         }
         else if (this.state.role != "admin") { /*ked si user*/
             if (this.yourChoice(this.props.eventID, this.props.cardID)) { /* user po liku*/
-                return (react_1.default.createElement("div", { className: "card__likes-yourChoice", title: "your choice" }, "?"));
+                return (react_1.default.createElement("div", { className: "card__likes-yourChoice", title: "your choice" }));
             }
             else { /* user pred likom*/
-                return (react_1.default.createElement("div", { onClick: this.vote, "data-eventid": this.props.eventID, "data-cardid": this.props.cardID, className: "card__likes", title: "vote!!!" }, "?"));
+                return (react_1.default.createElement("div", { onClick: this.vote, "data-eventid": this.props.eventID, "data-cardid": this.props.cardID, className: "card__likes", title: "vote" }));
             }
         }
         else { /*ked si admin*/
@@ -1154,7 +1154,6 @@ class KudoEvent extends react_1.default.Component {
         }
         else {
             return (react_1.default.createElement("div", { style: { position: 'relative' } },
-                react_1.default.createElement("div", { className: "kudo-info-points", title: list.map((person) => `${person.name}:${person.count}`).join(', ') }, "i"),
                 react_1.default.createElement(Knight_1.KnightForUser, Object.assign({}, { mostKudos: client_1.getKudoKnight(list) }))));
         }
     }

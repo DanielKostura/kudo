@@ -93,9 +93,7 @@ export default class Card extends Component<Props, State> {
     else if(this.state.role != "admin"){ /*ked si user*/
       if (this.yourChoice(this.props.eventID, this.props.cardID!)) { /* user po liku*/
         return (
-          <div className="card__likes-yourChoice" title="your choice">
-            ?
-          </div>
+          <div className="card__likes-yourChoice" title="your choice"></div>
         );
       }
 
@@ -106,8 +104,7 @@ export default class Card extends Component<Props, State> {
             data-eventid={this.props.eventID}
             data-cardid={this.props.cardID!}
             className="card__likes"
-            title="vote!!!">
-            ?
+            title="vote">
           </div>
         );
       }
