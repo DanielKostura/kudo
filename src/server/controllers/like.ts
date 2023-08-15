@@ -47,7 +47,7 @@ export function cLike(req: Request, res: Response) {
       }
       const now = new Date().getTime();
       if (eventData.dateFrom <= now && now <= eventData.dateTo) {
-        likes = cardData.likes + 1;
+        likes = cardData.likes + 1; /* Odstrnit +1 like*/
         return cards.update({ _id }, { $set: { likes } });
       } else {
         throw new Error('Can not vote for this event.');
