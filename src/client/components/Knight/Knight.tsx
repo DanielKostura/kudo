@@ -17,7 +17,7 @@ export const Knight = (props: Props) => (
   </div>
 );
 
-export const KnightForUser = (props: Props) => (
+export const KnightForUser = (props: Props) => ( /*zmenaKnight pridanie KnightForUser*/
   <div className="kudoKnight">
     <div>
       <img src="/img/007-crusader.png" />
