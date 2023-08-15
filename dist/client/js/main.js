@@ -25,9 +25,9 @@ function App() {
     return (React.createElement(react_router_dom_1.BrowserRouter, null,
         React.createElement(react_router_dom_1.Switch, null,
             React.createElement(react_router_dom_1.Route, { exact: true, path: "/" },
-                React.createElement("div", null, "Ahoj, toto je main routa, tu mozno raz daco bude, mozno nie :P")),
+                React.createElement("div", null, "Ahoj, toto je main routa, tu mozno raz daco bude, mozno nieeeeee :P")),
             React.createElement(react_router_dom_1.Route, { path: "/priklad" },
-                React.createElement("div", null, "Priklad na inu route ")),
+                React.createElement("div", null, "Priklad na inu route aaaaaaaaaaaaaaaaa ")),
             React.createElement(react_router_dom_1.Route, { path: "/event/:id", component: KudoEvent_1.default }))));
 }
 exports.default = App;
@@ -57,6 +57,12 @@ exports.Knight = (props) => (React.createElement("div", { className: "kudoKnight
     React.createElement("div", { className: "kudoKnight__content" },
         React.createElement("h3", null, "Kudo Knight"),
         React.createElement("h2", null, props.mostKudos))));
+exports.KnightForUser = (props) => (React.createElement("div", { className: "kudoKnight" },
+    React.createElement("div", null,
+        React.createElement("img", { src: "/img/007-crusader.png" })),
+    React.createElement("div", { className: "kudoKnight__content" },
+        React.createElement("h3", null, "Kudo Knight"),
+        React.createElement("h2", null, "NO NAME"))));
 
 
 /***/ }),
@@ -95,7 +101,7 @@ module.exports = exported;
 var ___CSS_LOADER_API_IMPORT___ = __webpack_require__(223);
 exports = ___CSS_LOADER_API_IMPORT___(false);
 // Module
-exports.push([module.i, ".kudoKnight {\n  font-family: 'Ubuntu', Arial, Helvetica, sans-serif;\n  background: linear-gradient(180deg, #ffffff 0%, rgba(255, 255, 255, 0) 100%), #c6d8d3;\n  display: flex;\n  position: relative;\n  box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.1);\n  border-radius: 10px;\n  padding: 5px;\n}\n.kudoKnight__content {\n  margin-left: 110px;\n  margin-bottom: 16px;\n}\n.kudoKnight h3 {\n  font-family: 'Ubuntu_Medium';\n  margin-top: 20px;\n  font-size: 12px;\n  color: #6d686d;\n}\n\n.kudoKnight h2 {\n  font-family: 'Ubuntu_Medium';\n  font-size: 18px;\n  color: #331832;\n  margin-top: -5px;\n  margin-left: 0px;\n}\n.kudoKnight img {\n  position: absolute;\n  height: 120%;\n  bottom: 0;\n}\n", ""]);
+exports.push([module.i, ".kudoKnight {\r\n  font-family: 'Ubuntu', Arial, Helvetica, sans-serif;\r\n  background: linear-gradient(180deg, #ffffff 0%, rgba(255, 255, 255, 0) 100%), #c6d8d3;\r\n  display: flex;\r\n  position: relative;\r\n  box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.1);\r\n  border-radius: 10px;\r\n  padding: 5px;\r\n}\r\n.kudoKnight__content {\r\n  margin-left: 110px;\r\n  margin-bottom: 16px;\r\n}\r\n.kudoKnight h3 {\r\n  font-family: 'Ubuntu_Medium';\r\n  margin-top: 20px;\r\n  font-size: 12px;\r\n  color: #6d686d;\r\n}\r\n\r\n.kudoKnight h2 {\r\n  font-family: 'Ubuntu_Medium';\r\n  font-size: 18px;\r\n  color: #331832;\r\n  margin-top: -5px;\r\n  margin-left: 0px;\r\n}\r\n.kudoKnight img {\r\n  position: absolute;\r\n  height: 120%;\r\n  bottom: 0;\r\n}\r\n", ""]);
 // Exports
 module.exports = exports;
 
@@ -173,7 +179,7 @@ module.exports = exported;
 var ___CSS_LOADER_API_IMPORT___ = __webpack_require__(223);
 exports = ___CSS_LOADER_API_IMPORT___(false);
 // Module
-exports.push([module.i, ":root {\n  --text-color: #ffffff;\n}\n\n.eventInfo {\n  position: relative;\n  margin-bottom: 10px;\n}\n\n.eventInfo h1,\nh2 {\n  font-family: 'Ubuntu_Normal';\n  font-style: normal;\n  color: var(--text-color);\n  margin: 2px;\n}\n\n.eventInfo h1 {\n  font-size: 24px;\n  line-height: 28px;\n}\n\n.eventInfo h2 {\n  font-size: 14px;\n  line-height: 17px;\n}\n", ""]);
+exports.push([module.i, ":root {\r\n  --text-color: #ffffff;\r\n}\r\n\r\n.eventInfo {\r\n  position: relative;\r\n  margin-bottom: 10px;\r\n}\r\n\r\n.eventInfo h1,\r\nh2 {\r\n  font-family: 'Ubuntu_Normal';\r\n  font-style: normal;\r\n  color: var(--text-color);\r\n  margin: 2px;\r\n}\r\n\r\n.eventInfo h1 {\r\n  font-size: 24px;\r\n  line-height: 28px;\r\n}\r\n\r\n.eventInfo h2 {\r\n  font-size: 14px;\r\n  line-height: 17px;\r\n}\r\n", ""]);
 // Exports
 module.exports = exports;
 
@@ -391,7 +397,7 @@ module.exports = exported;
 var ___CSS_LOADER_API_IMPORT___ = __webpack_require__(223);
 exports = ___CSS_LOADER_API_IMPORT___(false);
 // Module
-exports.push([module.i, ".cardIcon {\n  width: 100%;\n  height: 100%;\n}\n\n.cardIcon img {\n  width: 100%;\n  height: 100%;\n  min-width: 20px;\n  min-height: 20px;\n}\n", ""]);
+exports.push([module.i, ".cardIcon {\r\n  width: 100%;\r\n  height: 100%;\r\n}\r\n\r\n.cardIcon img {\r\n  width: 100%;\r\n  height: 100%;\r\n  min-width: 20px;\r\n  min-height: 20px;\r\n}\r\n", ""]);
 // Exports
 module.exports = exports;
 
@@ -432,7 +438,7 @@ module.exports = exported;
 var ___CSS_LOADER_API_IMPORT___ = __webpack_require__(223);
 exports = ___CSS_LOADER_API_IMPORT___(false);
 // Module
-exports.push([module.i, ".kudoForm {\n  background-color: #ffffff;\n  border-radius: 10px;\n  font-family: 'Ubuntu_Normal';\n}\n\n.kudoForm input,\n.kudoForm textarea {\n  font-family: 'Ubuntu_Normal';\n}\n\n.kudoForm .typePicker {\n  font-family: 'Ubuntu_Normal';\n  display: flex;\n  align-items: center;\n  height: 67px;\n  border-radius: 10px 10px 0 0;\n  background-color: #fdf0d5;\n  font-size: 20px;\n  color: #331832;\n  text-transform: capitalize;\n  cursor: pointer;\n  transition: background-color 0.3s ease;\n}\n\n.kudoForm .typePicker:hover {\n  background-color: #f9e6a3;\n}\n\n.kudoForm .typePicker .cardIcon {\n  max-width: 40px;\n  max-height: 40px;\n  margin-right: 16px;\n}\n\n.kudoForm .typeTitle {\n  display: flex;\n  flex-direction: row;\n  justify-content: center;\n  align-items: center;\n}\n\n.kudoForm .typePicker .select-search-box__options {\n  display: flex;\n  flex-wrap: wrap;\n}\n.kudoForm .typePicker .select-search-box__option:hover {\n  background: #f7e8d4;\n}\n.kudoForm .typePicker .select-search-box__option > div {\n  display: flex;\n  align-items: center;\n  justify-content: center;\n}\n\n.kudoForm .typePicker .select-search-box__options .cardIcon {\n  margin-right: 10px;\n  width: 30px;\n  max-width: 30px;\n  max-height: 30px;\n  min-width: 30px;\n}\n\n.kudoForm .typePicker .select-search-box__options li {\n  width: 50%;\n  padding: 14px;\n  height: 59px;\n  text-transform: capitalize;\n  background-color: #fbf8f4;\n}\n\n.kudoForm .typePicker .select-search-box__options li:hover {\n  background: rgba(47, 204, 139, 0.1);\n}\n\n.kudoForm .main {\n  height: 237px;\n  display: flex;\n  flex-direction: column;\n}\n\n.kudoForm .name {\n  display: flex;\n  align-items: center;\n  justify-content: center;\n  padding: 0 23px;\n  height: 55px;\n  font-size: 12px;\n  color: #6d686d;\n  border-bottom: 1px solid rgba(198, 216, 211, 0.3);\n}\n\n.kudoForm .name .select-search-box__search {\n  background-color: transparent;\n  width: 100%;\n  height: 53px;\n  margin-left: 20px;\n  border-radius: initial;\n  border: none;\n  font-size: 16px;\n  color: #6d686d;\n  margin-bottom: 0px;\n}\n\n.kudoForm .name .select-search-box .select-search-box__select {\n  top: 55px;\n  width: calc(100% - 23px);\n}\n\n.kudoForm .message {\n  display: flex;\n  align-items: center;\n  padding: 21px 23px;\n  flex-grow: 1;\n}\n\n.kudoForm .message textarea {\n  flex-grow: 1;\n  height: 100%;\n  width: 100%;\n  font-size: 12px;\n  color: #6d686d;\n  resize: none;\n  border: none;\n  outline: none;\n  background: transparent;\n  padding: 0;\n  margin: 0;\n}\n\n.kudoForm .name.red,\n.kudoForm .message.red {\n  animation: blink 0.7s ease;\n}\n\n.kudoForm .submit {\n  font-family: 'Ubuntu_Bold';\n  display: flex;\n  align-items: center;\n  justify-content: center;\n  height: 49px;\n  border-radius: 0 0 10px 10px;\n  font-size: 18px;\n  color: #ffffff;\n  font-weight: bold;\n  background: linear-gradient(180deg, #f0544f 0%, #d74945 100%), #f0544f;\n  cursor: pointer;\n}\n.kudoForm .submit:hover {\n  background: #de3934;\n}\n\n.kudoForm .submit.disabled {\n  pointer-events: none;\n  background: linear-gradient(180deg, #cecece 0%, #bcbdc4 100%), #bcbdc4;\n}\n\n@keyframes blink {\n  0% {\n    background: transparent;\n  }\n  50% {\n    background: #f0544fc7;\n  }\n  100% {\n    background: transparent;\n  }\n}\n\n/* react-select-search */\n.select-search-box {\n  width: 100%;\n  position: relative;\n  box-sizing: border-box;\n  font-family: 'Ubuntu_Normal';\n}\n\n.select-search-box *,\n.select-search-box *::after,\n.select-search-box *::before {\n  box-sizing: inherit;\n}\n\n.select-search-box__select {\n  display: none;\n}\n\n.select-search-box__select.select-search-box__select--display {\n  display: block;\n  border-radius: 0;\n}\n\n.select-search-box__search {\n  outline: none;\n}\n\n.select-search-box__value {\n  position: relative;\n}\n\n.select-search-box__value::after {\n  content: '';\n  display: inline-block;\n  position: absolute;\n  top: calc(50% - 9px);\n  right: 19px;\n  width: 11px;\n  height: 11px;\n  transform: rotate(45deg);\n  border-right: 1px solid #000;\n  border-bottom: 1px solid #000;\n  pointer-events: none;\n}\n\n.select-search-box__input {\n  display: block;\n  height: 36px;\n  width: 100%;\n  padding: 0 16px;\n  background: #fff;\n  border: none;\n  box-shadow: 0 0.0625rem 0.125rem rgba(0, 0, 0, 0.15);\n  border-radius: 3px;\n  outline: none;\n  font-size: 14px;\n  text-align: left;\n  line-height: 36px;\n  -webkit-appearance: none;\n}\n\n.select-search-box__input::-webkit-search-decoration,\n.select-search-box__input::-webkit-search-cancel-button,\n.select-search-box__input::-webkit-search-results-button,\n.select-search-box__input::-webkit-search-results-decoration {\n  -webkit-appearance: none;\n}\n\n.select-search-box__input:hover {\n  border-color: #2fcc8b;\n}\n\n.select-search-box__input:not([readonly]):focus {\n  cursor: initial;\n}\n\n.select-search-box__select {\n  background: #fff;\n  box-shadow: 0 0.0625rem 0.125rem rgba(0, 0, 0, 0.15);\n}\n\n.select-search-box:not(.select-search-box--multiple) .select-search-box__select {\n  position: absolute;\n  z-index: 2;\n  top: 53px;\n  right: 0;\n  left: 0;\n  overflow: auto;\n  max-height: 360px;\n}\n\n.select-search-box__options {\n  list-style: none;\n  padding-left: 0;\n  margin: 0;\n}\n\n.select-search-box__option {\n  display: flex;\n  align-items: center;\n  justify-content: start;\n  height: 47px;\n  width: 100%;\n  padding: 0 16px;\n  background: #fff;\n  border: none;\n  outline: none;\n  font-size: 14px;\n  text-align: left;\n  cursor: pointer;\n}\n\n.select-search-box__option.is-selected {\n  background: #2fcc8b;\n  color: #fff;\n}\n\n.select-search-box__option.is-highlighted,\n.select-search-box__option:not(.is-selected):hover,\n.select-search-box__option:not(.select-search-box__option--hover):hover,\n.select-search-box__option--hover {\n  background: rgba(47, 204, 139, 0.1);\n}\n\n.select-search-box__option--hover:hover,\n.select-search-box__option--hover:not(.is-selected):hover {\n  background: rgba(47, 204, 139, 0.2);\n}\n", ""]);
+exports.push([module.i, ".kudoForm {\r\n  background-color: #ffffff;\r\n  border-radius: 10px;\r\n  font-family: 'Ubuntu_Normal';\r\n}\r\n\r\n.kudoForm input,\r\n.kudoForm textarea {\r\n  font-family: 'Ubuntu_Normal';\r\n}\r\n\r\n.kudoForm .typePicker {\r\n  font-family: 'Ubuntu_Normal';\r\n  display: flex;\r\n  align-items: center;\r\n  height: 67px;\r\n  border-radius: 10px 10px 0 0;\r\n  background-color: #fdf0d5;\r\n  font-size: 20px;\r\n  color: #331832;\r\n  text-transform: capitalize;\r\n  cursor: pointer;\r\n  transition: background-color 0.3s ease;\r\n}\r\n\r\n.kudoForm .typePicker:hover {\r\n  background-color: #f9e6a3;\r\n}\r\n\r\n.kudoForm .typePicker .cardIcon {\r\n  max-width: 40px;\r\n  max-height: 40px;\r\n  margin-right: 16px;\r\n}\r\n\r\n.kudoForm .typeTitle {\r\n  display: flex;\r\n  flex-direction: row;\r\n  justify-content: center;\r\n  align-items: center;\r\n}\r\n\r\n.kudoForm .typePicker .select-search-box__options {\r\n  display: flex;\r\n  flex-wrap: wrap;\r\n}\r\n.kudoForm .typePicker .select-search-box__option:hover {\r\n  background: #f7e8d4;\r\n}\r\n.kudoForm .typePicker .select-search-box__option > div {\r\n  display: flex;\r\n  align-items: center;\r\n  justify-content: center;\r\n}\r\n\r\n.kudoForm .typePicker .select-search-box__options .cardIcon {\r\n  margin-right: 10px;\r\n  width: 30px;\r\n  max-width: 30px;\r\n  max-height: 30px;\r\n  min-width: 30px;\r\n}\r\n\r\n.kudoForm .typePicker .select-search-box__options li {\r\n  width: 50%;\r\n  padding: 14px;\r\n  height: 59px;\r\n  text-transform: capitalize;\r\n  background-color: #fbf8f4;\r\n}\r\n\r\n.kudoForm .typePicker .select-search-box__options li:hover {\r\n  background: rgba(47, 204, 139, 0.1);\r\n}\r\n\r\n.kudoForm .main {\r\n  height: 237px;\r\n  display: flex;\r\n  flex-direction: column;\r\n}\r\n\r\n.kudoForm .name {\r\n  display: flex;\r\n  align-items: center;\r\n  justify-content: center;\r\n  padding: 0 23px;\r\n  height: 55px;\r\n  font-size: 12px;\r\n  color: #6d686d;\r\n  border-bottom: 1px solid rgba(198, 216, 211, 0.3);\r\n}\r\n\r\n.kudoForm .name .select-search-box__search {\r\n  background-color: transparent;\r\n  width: 100%;\r\n  height: 53px;\r\n  margin-left: 20px;\r\n  border-radius: initial;\r\n  border: none;\r\n  font-size: 16px;\r\n  color: #6d686d;\r\n  margin-bottom: 0px;\r\n}\r\n\r\n.kudoForm .name .select-search-box .select-search-box__select {\r\n  top: 55px;\r\n  width: calc(100% - 23px);\r\n}\r\n\r\n.kudoForm .message {\r\n  display: flex;\r\n  align-items: center;\r\n  padding: 21px 23px;\r\n  flex-grow: 1;\r\n}\r\n\r\n.kudoForm .message textarea {\r\n  flex-grow: 1;\r\n  height: 100%;\r\n  width: 100%;\r\n  font-size: 12px;\r\n  color: #6d686d;\r\n  resize: none;\r\n  border: none;\r\n  outline: none;\r\n  background: transparent;\r\n  padding: 0;\r\n  margin: 0;\r\n}\r\n\r\n.kudoForm .name.red,\r\n.kudoForm .message.red {\r\n  animation: blink 0.7s ease;\r\n}\r\n\r\n.kudoForm .submit {\r\n  font-family: 'Ubuntu_Bold';\r\n  display: flex;\r\n  align-items: center;\r\n  justify-content: center;\r\n  height: 49px;\r\n  border-radius: 0 0 10px 10px;\r\n  font-size: 18px;\r\n  color: #ffffff;\r\n  font-weight: bold;\r\n  background: linear-gradient(180deg, #f0544f 0%, #d74945 100%), #f0544f;\r\n  cursor: pointer;\r\n}\r\n.kudoForm .submit:hover {\r\n  background: #de3934;\r\n}\r\n\r\n.kudoForm .submit.disabled {\r\n  pointer-events: none;\r\n  background: linear-gradient(180deg, #cecece 0%, #bcbdc4 100%), #bcbdc4;\r\n}\r\n\r\n@keyframes blink {\r\n  0% {\r\n    background: transparent;\r\n  }\r\n  50% {\r\n    background: #f0544fc7;\r\n  }\r\n  100% {\r\n    background: transparent;\r\n  }\r\n}\r\n\r\n/* react-select-search */\r\n.select-search-box {\r\n  width: 100%;\r\n  position: relative;\r\n  box-sizing: border-box;\r\n  font-family: 'Ubuntu_Normal';\r\n}\r\n\r\n.select-search-box *,\r\n.select-search-box *::after,\r\n.select-search-box *::before {\r\n  box-sizing: inherit;\r\n}\r\n\r\n.select-search-box__select {\r\n  display: none;\r\n}\r\n\r\n.select-search-box__select.select-search-box__select--display {\r\n  display: block;\r\n  border-radius: 0;\r\n}\r\n\r\n.select-search-box__search {\r\n  outline: none;\r\n}\r\n\r\n.select-search-box__value {\r\n  position: relative;\r\n}\r\n\r\n.select-search-box__value::after {\r\n  content: '';\r\n  display: inline-block;\r\n  position: absolute;\r\n  top: calc(50% - 9px);\r\n  right: 19px;\r\n  width: 11px;\r\n  height: 11px;\r\n  transform: rotate(45deg);\r\n  border-right: 1px solid #000;\r\n  border-bottom: 1px solid #000;\r\n  pointer-events: none;\r\n}\r\n\r\n.select-search-box__input {\r\n  display: block;\r\n  height: 36px;\r\n  width: 100%;\r\n  padding: 0 16px;\r\n  background: #fff;\r\n  border: none;\r\n  box-shadow: 0 0.0625rem 0.125rem rgba(0, 0, 0, 0.15);\r\n  border-radius: 3px;\r\n  outline: none;\r\n  font-size: 14px;\r\n  text-align: left;\r\n  line-height: 36px;\r\n  -webkit-appearance: none;\r\n}\r\n\r\n.select-search-box__input::-webkit-search-decoration,\r\n.select-search-box__input::-webkit-search-cancel-button,\r\n.select-search-box__input::-webkit-search-results-button,\r\n.select-search-box__input::-webkit-search-results-decoration {\r\n  -webkit-appearance: none;\r\n}\r\n\r\n.select-search-box__input:hover {\r\n  border-color: #2fcc8b;\r\n}\r\n\r\n.select-search-box__input:not([readonly]):focus {\r\n  cursor: initial;\r\n}\r\n\r\n.select-search-box__select {\r\n  background: #fff;\r\n  box-shadow: 0 0.0625rem 0.125rem rgba(0, 0, 0, 0.15);\r\n}\r\n\r\n.select-search-box:not(.select-search-box--multiple) .select-search-box__select {\r\n  position: absolute;\r\n  z-index: 2;\r\n  top: 53px;\r\n  right: 0;\r\n  left: 0;\r\n  overflow: auto;\r\n  max-height: 360px;\r\n}\r\n\r\n.select-search-box__options {\r\n  list-style: none;\r\n  padding-left: 0;\r\n  margin: 0;\r\n}\r\n\r\n.select-search-box__option {\r\n  display: flex;\r\n  align-items: center;\r\n  justify-content: start;\r\n  height: 47px;\r\n  width: 100%;\r\n  padding: 0 16px;\r\n  background: #fff;\r\n  border: none;\r\n  outline: none;\r\n  font-size: 14px;\r\n  text-align: left;\r\n  cursor: pointer;\r\n}\r\n\r\n.select-search-box__option.is-selected {\r\n  background: #2fcc8b;\r\n  color: #fff;\r\n}\r\n\r\n.select-search-box__option.is-highlighted,\r\n.select-search-box__option:not(.is-selected):hover,\r\n.select-search-box__option:not(.select-search-box__option--hover):hover,\r\n.select-search-box__option--hover {\r\n  background: rgba(47, 204, 139, 0.1);\r\n}\r\n\r\n.select-search-box__option--hover:hover,\r\n.select-search-box__option--hover:not(.is-selected):hover {\r\n  background: rgba(47, 204, 139, 0.2);\r\n}\r\n", ""]);
 // Exports
 module.exports = exports;
 
@@ -455,6 +461,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const react_1 = __importStar(__webpack_require__(1));
 const CardIcon_1 = __webpack_require__(235);
 const api_1 = __webpack_require__(33);
+const client_1 = __webpack_require__(34);
 __webpack_require__(241);
 class Card extends react_1.Component {
     constructor(props) {
@@ -490,7 +497,8 @@ class Card extends react_1.Component {
             return;
         };
         this.state = {
-            voted: false
+            voted: false,
+            role: client_1.getCookie('connect.role')
         };
     }
     render() {
@@ -502,15 +510,24 @@ class Card extends react_1.Component {
                 react_1.default.createElement("p", null, this.props.text)),
             this.getVoteButton()));
     }
+    /*"card__likes-noVote"           "card__likes-yourChoice"            "card__likes"             {this.props.likes}*/
     getVoteButton() {
-        if (this.props.isActive === false) {
+        if (this.props.isActive === false) { /*ked je event neaktivny pre vsetkych*/
             return (react_1.default.createElement("div", { className: "card__likes-noVote", title: "event is inactive" }, this.props.likes));
         }
-        else if (this.yourChoice(this.props.eventID, this.props.cardID)) {
-            return (react_1.default.createElement("div", { className: "card__likes-yourChoice", title: "your choice" }, this.props.likes));
+        else if (this.yourChoice(this.props.eventID, this.props.cardID) && this.state.role != "admin") { /* ked user uz lajkol*/
+            return (react_1.default.createElement("div", { className: "card__likes-yourChoice", title: "your choice" }, "?"));
+        }
+        else if (this.state.role != "admin") { /* ked nie si admin pred laknutym*/
+            return (react_1.default.createElement("div", { onClick: this.vote, "data-eventid": this.props.eventID, "data-cardid": this.props.cardID, className: "card__likes", title: "vote!!!" }, "?"));
         }
         else {
-            return (react_1.default.createElement("div", { onClick: this.vote, "data-eventid": this.props.eventID, "data-cardid": this.props.cardID, className: "card__likes", title: "vote" }, this.props.likes));
+            if (this.yourChoice(this.props.eventID, this.props.cardID)) { /* ked si admin a uz lajkol*/
+                return (react_1.default.createElement("div", { className: "card__likes-yourChoice", title: "your choice" }, this.props.likes));
+            }
+            else {
+                return (react_1.default.createElement("div", { onClick: this.vote, "data-eventid": this.props.eventID, "data-cardid": this.props.cardID, className: "card__likes", title: "vote!!!" }, this.props.likes));
+            }
         }
     }
     alreadyVoted(eventID, cardID) {
@@ -578,7 +595,7 @@ module.exports = exported;
 var ___CSS_LOADER_API_IMPORT___ = __webpack_require__(223);
 exports = ___CSS_LOADER_API_IMPORT___(false);
 // Module
-exports.push([module.i, ":root {\n  --card-bg-color-text: rgba(255, 255, 255, 0.9);\n  --card-bg-color-body-highlighted: rgba(253, 240, 213, 0.9);\n  --card-bg-color-icon: linear-gradient(180deg, rgba(255, 255, 255, 0.9) 0%, rgba(255, 255, 255, 0) 100%),\n    rgba(198, 216, 211, 0.9);\n  --card-text-color-h3: #331832;\n  --card-text-color: #6d686d;\n  --card-bg-color-likes: #f0544f;\n  --card-bg-color-likes-yourChoice: #2eb378;\n  --card-bg-color-likes-noVote: #bcbdc4;\n  --card-text-color-likes: #ffffff;\n}\n\n.card {\n  display: flex;\n  position: relative;\n  min-height: 80px;\n  border-radius: 0px 10px 10px 0px;\n  box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.1);\n  background: transparent;\n  border-radius: 10px;\n  margin: 11px;\n}\n\n.card .card__icon {\n  min-width: 70px;\n  width: 70px;\n  background: var(--card-bg-color-icon);\n  border-radius: 10px 0px 0px 10px;\n  text-align: center;\n}\n\n.card .card__icon img {\n  width: 33px;\n  margin: 0 auto;\n}\n\n.card .card__text,\n.card .card__text-highlighted {\n  width: 100%;\n}\n\n.card .card__text,\n.card .card__text-highlighted {\n  border-radius: 0px 10px 10px 0px;\n  padding: 20px 17px 20px 17px;\n  background: var(--card-bg-color-text);\n}\n.card .card__text-highlighted {\n  background: var(--card-bg-color-body-highlighted);\n}\n\n.card .card__text h3,\n.card .card__text-highlighted h3 {\n  font-family: 'Ubuntu_Medium';\n  font-size: 14px;\n  line-height: 16px;\n  color: var(--card-text-color-h3);\n  margin: 0px;\n  margin-bottom: 6px;\n}\n\n.card .card__text p,\n.card .card__text-highlighted p {\n  font-family: 'Ubuntu_Normal';\n  font-size: 12px;\n  line-height: 14px;\n  color: var(--card-text-color);\n  margin: 0px;\n}\n\n.card .card__likes,\n.card .card__likes-yourChoice,\n.card .card__likes-noVote {\n  width: 22px;\n  height: 22px;\n  position: absolute;\n  top: -11px;\n  right: -11px;\n  background: var(--card-bg-color-likes-yourChoice);\n  border-radius: 50%;\n  color: var(--card-text-color-likes);\n  font-family: 'Ubuntu_Bold';\n  font-size: 10px;\n  line-height: 22px;\n  text-align: center;\n  transition: background-color 0.3s ease-out;\n}\n.card .card__likes {\n  cursor: pointer;\n}\n\n.card .card__likes-noVote {\n  background: var(--card-bg-color-likes-noVote);\n}\n\n.card .card__likes-yourChoice {\n  background: var(--card-bg-color-likes);\n  animation: pulse 0.3s;\n  animation-iteration-count: 2;\n}\n\n@keyframes pulse {\n  from {\n    transform: scale(1, 1);\n  }\n  50% {\n    transform: scale(1.3, 1.3);\n  }\n  to {\n    transform: scale(1, 1);\n  }\n}\n", ""]);
+exports.push([module.i, ":root {\r\n  --card-bg-color-text: rgba(255, 255, 255, 0.9);\r\n  --card-bg-color-body-highlighted: rgba(253, 240, 213, 0.9);\r\n  --card-bg-color-icon: linear-gradient(180deg, rgba(255, 255, 255, 0.9) 0%, rgba(255, 255, 255, 0) 100%),\r\n    rgba(198, 216, 211, 0.9);\r\n  --card-text-color-h3: #331832;\r\n  --card-text-color: #6d686d;\r\n  --card-bg-color-likes: #f0544f;\r\n  --card-bg-color-likes-yourChoice: #2eb378;\r\n  --card-bg-color-likes-noVote: #bcbdc4;\r\n  --card-text-color-likes: #ffffff;\r\n}\r\n\r\n.card {\r\n  display: flex;\r\n  position: relative;\r\n  min-height: 80px;\r\n  border-radius: 0px 10px 10px 0px;\r\n  box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.1);\r\n  background: transparent;\r\n  border-radius: 10px;\r\n  margin: 11px;\r\n}\r\n\r\n.card .card__icon {\r\n  min-width: 70px;\r\n  width: 70px;\r\n  background: var(--card-bg-color-icon);\r\n  border-radius: 10px 0px 0px 10px;\r\n  text-align: center;\r\n}\r\n\r\n.card .card__icon img {\r\n  width: 33px;\r\n  margin: 0 auto;\r\n}\r\n\r\n.card .card__text,\r\n.card .card__text-highlighted {\r\n  width: 100%;\r\n}\r\n\r\n.card .card__text,\r\n.card .card__text-highlighted {\r\n  border-radius: 0px 10px 10px 0px;\r\n  padding: 20px 17px 20px 17px;\r\n  background: var(--card-bg-color-text);\r\n}\r\n.card .card__text-highlighted {\r\n  background: var(--card-bg-color-body-highlighted);\r\n}\r\n\r\n.card .card__text h3,\r\n.card .card__text-highlighted h3 {\r\n  font-family: 'Ubuntu_Medium';\r\n  font-size: 14px;\r\n  line-height: 16px;\r\n  color: var(--card-text-color-h3);\r\n  margin: 0px;\r\n  margin-bottom: 6px;\r\n}\r\n\r\n.card .card__text p,\r\n.card .card__text-highlighted p {\r\n  font-family: 'Ubuntu_Normal';\r\n  font-size: 12px;\r\n  line-height: 14px;\r\n  color: var(--card-text-color);\r\n  margin: 0px;\r\n}\r\n\r\n.card .card__likes,\r\n.card .card__likes-yourChoice,\r\n.card .card__likes-noVote {\r\n  width: 22px;\r\n  height: 22px;\r\n  position: absolute;\r\n  top: -11px;\r\n  right: -11px;\r\n  background: var(--card-bg-color-likes-yourChoice);\r\n  border-radius: 50%;\r\n  color: var(--card-text-color-likes);\r\n  font-family: 'Ubuntu_Bold';\r\n  font-size: 10px;\r\n  line-height: 22px;\r\n  text-align: center;\r\n  transition: background-color 0.3s ease-out;\r\n}\r\n.card .card__likes {\r\n  cursor: pointer;\r\n}\r\n\r\n.card .card__likes-noVote {\r\n  background: var(--card-bg-color-likes-noVote);\r\n}\r\n\r\n.card .card__likes-yourChoice {\r\n  background: var(--card-bg-color-likes);\r\n  animation: pulse 0.3s;\r\n  animation-iteration-count: 2;\r\n}\r\n\r\n@keyframes pulse {\r\n  from {\r\n    transform: scale(1, 1);\r\n  }\r\n  50% {\r\n    transform: scale(1.3, 1.3);\r\n  }\r\n  to {\r\n    transform: scale(1, 1);\r\n  }\r\n}\r\n", ""]);
 // Exports
 module.exports = exports;
 
@@ -776,7 +793,7 @@ module.exports = exported;
 var ___CSS_LOADER_API_IMPORT___ = __webpack_require__(223);
 exports = ___CSS_LOADER_API_IMPORT___(false);
 // Module
-exports.push([module.i, ".soundSwitch,\n.soundSwitch--on,\n.soundSwitch--off {\n  width: 20px;\n  height: 20px;\n  cursor: pointer;\n  margin-left: 10px;\n}\n\n.soundSwitch--on {\n  background: url('/img/volume.png');\n  background-size: 20px;\n}\n\n.soundSwitch--off {\n  background: url('/img/no-sound.png');\n  background-size: 20px;\n}\n", ""]);
+exports.push([module.i, ".soundSwitch,\r\n.soundSwitch--on,\r\n.soundSwitch--off {\r\n  width: 20px;\r\n  height: 20px;\r\n  cursor: pointer;\r\n  margin-left: 10px;\r\n}\r\n\r\n.soundSwitch--on {\r\n  background: url('/img/volume.png');\r\n  background-size: 20px;\r\n}\r\n\r\n.soundSwitch--off {\r\n  background: url('/img/no-sound.png');\r\n  background-size: 20px;\r\n}\r\n", ""]);
 // Exports
 module.exports = exports;
 
@@ -817,7 +834,7 @@ module.exports = exported;
 var ___CSS_LOADER_API_IMPORT___ = __webpack_require__(223);
 exports = ___CSS_LOADER_API_IMPORT___(false);
 // Module
-exports.push([module.i, ".kudoSettings {\n  position: absolute;\n  top: 10px;\n  right: 10px;\n  width: auto;\n  text-align: right;\n  display: flex;\n  justify-content: flex-end;\n  align-items: center;\n  color: #ffffff;\n}\n.tv_mode, .sound_mode {\n  margin: 0 10px;\n  display: flex;\n  align-items: center;\n}\n", ""]);
+exports.push([module.i, ".kudoSettings {\r\n  position: absolute;\r\n  top: 10px;\r\n  right: 10px;\r\n  width: auto;\r\n  text-align: right;\r\n  display: flex;\r\n  justify-content: flex-end;\r\n  align-items: center;\r\n  color: #ffffff;\r\n}\r\n.tv_mode, .sound_mode {\r\n  margin: 0 10px;\r\n  display: flex;\r\n  align-items: center;\r\n}\r\n", ""]);
 // Exports
 module.exports = exports;
 
@@ -858,7 +875,7 @@ module.exports = exported;
 var ___CSS_LOADER_API_IMPORT___ = __webpack_require__(223);
 exports = ___CSS_LOADER_API_IMPORT___(false);
 // Module
-exports.push([module.i, ".kudoEvent {\n  background: url('/img/general-background.png');\n  background-size: cover;\n  font-family: 'Ubuntu', Arial, Helvetica, sans-serif;\n  padding-right: 0px;\n  min-height: calc(100vh + 50px);\n  width: 100%;\n}\n\n.kudoEvent .event_info {\n  float: left;\n  flex-basis: 460px;\n  width: 460px;\n  min-width: 460px;\n  height: 100%;\n  display: flex;\n  flex-direction: column;\n  align-items: start;\n  justify-content: center;\n  padding: 50px 50px 0 100px;\n}\n\n.kudoEvent .event_info > div {\n  width: 100%;\n  margin-bottom: 50px;\n}\n\n.kudoEvent .event_info .eventInfo {\n  margin-bottom: 28px;\n}\n\n.kudoEvent .event_info .kudoForm {\n  margin-bottom: 0px;\n}\n\n.kudoEvent .event_cards {\n  margin-left: 100px;\n  padding: 50px 0;\n  display: flex;\n  flex-direction: row;\n  flex-wrap: wrap;\n  overflow-y: auto;\n  flex: 1;\n}\n\n.kudoEvent .event_cards .card {\n  width: 296px;\n}\n\n.kudoEvent .newCard {\n  display: flex;\n  z-index: 10;\n  width: 100%;\n  height: 100%;\n  top: 0;\n  left: 0;\n  padding: 4%;\n  position: absolute;\n  background: rgba(83, 83, 83, 0.3);\n}\n\n.kudoEvent .newCard.hidden {\n  display: none;\n}\n\n.kudoEvent .newCard > div {\n  position: relative;\n  margin: auto;\n  width: 70%;\n  height: 70%;\n  animation: popup 0.3s ease-out;\n}\n\n.kudoEvent .newCard .close {\n  position: absolute;\n  right: 12px;\n  top: 12px;\n  width: 12px;\n  height: 12px;\n  z-index: 11;\n  cursor: pointer;\n}\n\n.kudoEvent .newCard .card {\n  height: 100%;\n  width: 100%;\n  margin: 0;\n}\n\n.kudoEvent .newCard .card .card__icon {\n  width: 33%;\n  background: linear-gradient(180deg, rgba(255, 255, 255, 1) 0%, rgba(255, 255, 255, 0) 100%),\n    rgba(198, 216, 211, 1);\n}\n\n.kudoEvent .newCard .card .card__icon img {\n  width: 60%;\n}\n\n.kudoEvent .newCard .card .card__text,\n.kudoEvent .newCard .card .card__text-highlighted {\n  display: flex;\n  flex-direction: column;\n  justify-content: center;\n  background: #fdf0d5;\n}\n\n.kudoEvent .newCard .card .card__text h3,\n.kudoEvent .newCard .card .card__text-highlighted h3 {\n  font-size: 46px;\n  line-height: 54px;\n  padding: 1rem 2rem;\n  text-align: center;\n  margin: 0;\n}\n\n.kudoEvent .newCard .card .card__text p,\n.kudoEvent .newCard .card .card__text-highlighted p {\n  font-size: 40px;\n  line-height: 49px;\n  padding: 1rem 2rem;\n  display: flex;\n  justify-content: center;\n  overflow: hidden;\n}\n\n.kudoEvent .newCard .card .card__likes {\n  display: none;\n}\n.kudoEvent .kudo-info-points {\n  background: #ffdc63;\n    right: 0;\n    z-index: 2;\n    padding: 0 10px;\n    border-radius: 10px;\n    position: absolute;\n    box-shadow: 0px 2px 5px #c8d9d5;\n    cursor: help;\n}\n\n@media only screen and (max-width: 800px) {\n  .kudoEvent {\n    padding: 0 0 0 20px;\n  }\n\n  .kudoEvent .event_info {\n    flex-basis: 320px;\n    width: 320px;\n    min-width: 320px;\n    padding: 0px 10px 0 0px;\n  }\n\n  .kudoEvent .event_cards {\n    margin-left: 50px;\n  }\n}\n\n@media only screen and (max-width: 580px) {\n  .kudoEvent {\n    background: #0b1f39;\n    background: linear-gradient(140deg, #825640 0%, #0b1f39 100%);\n    flex-direction: column;\n    padding: 0px;\n    height: auto;\n  }\n\n  .kudoEvent .event_info {\n    width: 100%;\n    margin: 0;\n    padding: 7%;\n  }\n\n  .kudoEvent .event_cards {\n    width: 100%;\n    margin: 0;\n    padding: 7%;\n  }\n\n  .kudoEvent .event_cards .card {\n    margin: 10px 0;\n    min-width: unset;\n    width: 100%;\n  }\n\n  .kudoEvent .event_cards .card .card__text {\n    min-width: unset;\n  }\n\n  .kudoEvent .newCard {\n    display: none;\n  }\n}\n\n@keyframes popup {\n  0% {\n    transform: scale(0);\n  }\n  100% {\n    transform: scale(1);\n  }\n}", ""]);
+exports.push([module.i, ".kudoEvent {\r\n  background: url('/img/general-background.png');\r\n  background-size: cover;\r\n  font-family: 'Ubuntu', Arial, Helvetica, sans-serif;\r\n  padding-right: 0px;\r\n  min-height: calc(100vh + 50px);\r\n  width: 100%;\r\n}\r\n\r\n.kudoEvent .event_info {\r\n  float: left;\r\n  flex-basis: 460px;\r\n  width: 460px;\r\n  min-width: 460px;\r\n  height: 100%;\r\n  display: flex;\r\n  flex-direction: column;\r\n  align-items: start;\r\n  justify-content: center;\r\n  padding: 50px 50px 0 100px;\r\n}\r\n\r\n.kudoEvent .event_info > div {\r\n  width: 100%;\r\n  margin-bottom: 50px;\r\n}\r\n\r\n.kudoEvent .event_info .eventInfo {\r\n  margin-bottom: 28px;\r\n}\r\n\r\n.kudoEvent .event_info .kudoForm {\r\n  margin-bottom: 0px;\r\n}\r\n\r\n.kudoEvent .event_cards {\r\n  margin-left: 100px;\r\n  padding: 50px 0;\r\n  display: flex;\r\n  flex-direction: row;\r\n  flex-wrap: wrap;\r\n  overflow-y: auto;\r\n  flex: 1;\r\n}\r\n\r\n.kudoEvent .event_cards .card {\r\n  width: 296px;\r\n}\r\n\r\n.kudoEvent .newCard {\r\n  display: flex;\r\n  z-index: 10;\r\n  width: 100%;\r\n  height: 100%;\r\n  top: 0;\r\n  left: 0;\r\n  padding: 4%;\r\n  position: absolute;\r\n  background: rgba(83, 83, 83, 0.3);\r\n}\r\n\r\n.kudoEvent .newCard.hidden {\r\n  display: none;\r\n}\r\n\r\n.kudoEvent .newCard > div {\r\n  position: relative;\r\n  margin: auto;\r\n  width: 70%;\r\n  height: 70%;\r\n  animation: popup 0.3s ease-out;\r\n}\r\n\r\n.kudoEvent .newCard .close {\r\n  position: absolute;\r\n  right: 12px;\r\n  top: 12px;\r\n  width: 12px;\r\n  height: 12px;\r\n  z-index: 11;\r\n  cursor: pointer;\r\n}\r\n\r\n.kudoEvent .newCard .card {\r\n  height: 100%;\r\n  width: 100%;\r\n  margin: 0;\r\n}\r\n\r\n.kudoEvent .newCard .card .card__icon {\r\n  width: 33%;\r\n  background: linear-gradient(180deg, rgba(255, 255, 255, 1) 0%, rgba(255, 255, 255, 0) 100%),\r\n    rgba(198, 216, 211, 1);\r\n}\r\n\r\n.kudoEvent .newCard .card .card__icon img {\r\n  width: 60%;\r\n}\r\n\r\n.kudoEvent .newCard .card .card__text,\r\n.kudoEvent .newCard .card .card__text-highlighted {\r\n  display: flex;\r\n  flex-direction: column;\r\n  justify-content: center;\r\n  background: #fdf0d5;\r\n}\r\n\r\n.kudoEvent .newCard .card .card__text h3,\r\n.kudoEvent .newCard .card .card__text-highlighted h3 {\r\n  font-size: 46px;\r\n  line-height: 54px;\r\n  padding: 1rem 2rem;\r\n  text-align: center;\r\n  margin: 0;\r\n}\r\n\r\n.kudoEvent .newCard .card .card__text p,\r\n.kudoEvent .newCard .card .card__text-highlighted p {\r\n  font-size: 40px;\r\n  line-height: 49px;\r\n  padding: 1rem 2rem;\r\n  display: flex;\r\n  justify-content: center;\r\n  overflow: hidden;\r\n}\r\n\r\n.kudoEvent .newCard .card .card__likes {\r\n  display: none;\r\n}\r\n.kudoEvent .kudo-info-points {\r\n  background: #ffdc63;\r\n    right: 0;\r\n    z-index: 2;\r\n    padding: 0 10px;\r\n    border-radius: 10px;\r\n    position: absolute;\r\n    box-shadow: 0px 2px 5px #c8d9d5;\r\n    cursor: help;\r\n}\r\n\r\n@media only screen and (max-width: 800px) {\r\n  .kudoEvent {\r\n    padding: 0 0 0 20px;\r\n  }\r\n\r\n  .kudoEvent .event_info {\r\n    flex-basis: 320px;\r\n    width: 320px;\r\n    min-width: 320px;\r\n    padding: 0px 10px 0 0px;\r\n  }\r\n\r\n  .kudoEvent .event_cards {\r\n    margin-left: 50px;\r\n  }\r\n}\r\n\r\n@media only screen and (max-width: 580px) {\r\n  .kudoEvent {\r\n    background: #0b1f39;\r\n    background: linear-gradient(140deg, #825640 0%, #0b1f39 100%);\r\n    flex-direction: column;\r\n    padding: 0px;\r\n    height: auto;\r\n  }\r\n\r\n  .kudoEvent .event_info {\r\n    width: 100%;\r\n    margin: 0;\r\n    padding: 7%;\r\n  }\r\n\r\n  .kudoEvent .event_cards {\r\n    width: 100%;\r\n    margin: 0;\r\n    padding: 7%;\r\n  }\r\n\r\n  .kudoEvent .event_cards .card {\r\n    margin: 10px 0;\r\n    min-width: unset;\r\n    width: 100%;\r\n  }\r\n\r\n  .kudoEvent .event_cards .card .card__text {\r\n    min-width: unset;\r\n  }\r\n\r\n  .kudoEvent .newCard {\r\n    display: none;\r\n  }\r\n}\r\n\r\n@keyframes popup {\r\n  0% {\r\n    transform: scale(0);\r\n  }\r\n  100% {\r\n    transform: scale(1);\r\n  }\r\n}", ""]);
 // Exports
 module.exports = exports;
 
@@ -933,7 +950,7 @@ var ___CSS_LOADER_AT_RULE_IMPORT_0___ = __webpack_require__(286);
 exports = ___CSS_LOADER_API_IMPORT___(false);
 exports.i(___CSS_LOADER_AT_RULE_IMPORT_0___);
 // Module
-exports.push([module.i, "\n", ""]);
+exports.push([module.i, "\r\n", ""]);
 // Exports
 module.exports = exports;
 
@@ -947,7 +964,7 @@ module.exports = exports;
 var ___CSS_LOADER_API_IMPORT___ = __webpack_require__(223);
 exports = ___CSS_LOADER_API_IMPORT___(false);
 // Module
-exports.push([module.i, "/* Box sizing rules */\n*,\n*::before,\n*::after {\n  box-sizing: border-box;\n}\n\n/* Remove default padding */\nul[class],\nol[class] {\n  padding: 0;\n}\n\n/* Remove default margin */\nbody,\nh1,\nh2,\nh3,\nh4,\np,\nul[class],\nol[class],\nli,\nfigure,\nfigcaption,\nblockquote,\ndl,\ndd {\n  margin: 0;\n}\n\nh1,\nh2,\nh3,\nh4 {\n  font-weight: normal;\n}\n\n/* Set core body defaults */\nbody {\n  min-height: 100vh;\n  scroll-behavior: smooth;\n  text-rendering: optimizeSpeed;\n  line-height: 1.5;\n}\n\n/* Remove list styles on ul, ol elements with a class attribute */\nul[class],\nol[class] {\n  list-style: none;\n}\n\n/* A elements that don't have a class get default styles */\na:not([class]) {\n  text-decoration-skip-ink: auto;\n}\n\n/* Make images easier to work with */\nimg {\n  max-width: 100%;\n  display: block;\n}\n\n/* Inherit fonts for inputs and buttons */\ninput,\nbutton,\ntextarea,\nselect {\n  font: inherit;\n}\n", ""]);
+exports.push([module.i, "/* Box sizing rules */\r\n*,\r\n*::before,\r\n*::after {\r\n  box-sizing: border-box;\r\n}\r\n\r\n/* Remove default padding */\r\nul[class],\r\nol[class] {\r\n  padding: 0;\r\n}\r\n\r\n/* Remove default margin */\r\nbody,\r\nh1,\r\nh2,\r\nh3,\r\nh4,\r\np,\r\nul[class],\r\nol[class],\r\nli,\r\nfigure,\r\nfigcaption,\r\nblockquote,\r\ndl,\r\ndd {\r\n  margin: 0;\r\n}\r\n\r\nh1,\r\nh2,\r\nh3,\r\nh4 {\r\n  font-weight: normal;\r\n}\r\n\r\n/* Set core body defaults */\r\nbody {\r\n  min-height: 100vh;\r\n  scroll-behavior: smooth;\r\n  text-rendering: optimizeSpeed;\r\n  line-height: 1.5;\r\n}\r\n\r\n/* Remove list styles on ul, ol elements with a class attribute */\r\nul[class],\r\nol[class] {\r\n  list-style: none;\r\n}\r\n\r\n/* A elements that don't have a class get default styles */\r\na:not([class]) {\r\n  text-decoration-skip-ink: auto;\r\n}\r\n\r\n/* Make images easier to work with */\r\nimg {\r\n  max-width: 100%;\r\n  display: block;\r\n}\r\n\r\n/* Inherit fonts for inputs and buttons */\r\ninput,\r\nbutton,\r\ntextarea,\r\nselect {\r\n  font: inherit;\r\n}\r\n", ""]);
 // Exports
 module.exports = exports;
 
@@ -974,6 +991,7 @@ const CardNotification_1 = __importDefault(__webpack_require__(243));
 const KudoSettings_1 = __importDefault(__webpack_require__(244));
 __webpack_require__(252);
 const QRcode_1 = __importDefault(__webpack_require__(254));
+const client_2 = __webpack_require__(34);
 const MODAL_INTERVAL = 120 * 1000;
 const MODAL_TIME = 120 * 1000;
 const REFRESH = 15 * 1000; // 60 seconds
@@ -985,8 +1003,10 @@ function CardModal({ newCardProps, onClick }) {
             react_1.default.createElement(Card_1.default, Object.assign({}, newCardProps)))));
 }
 class KudoEvent extends react_1.default.Component {
+    /*static ukaz: boolean;*/
     constructor(props) {
         super(props);
+        /*zmena*/
         this.eventId = this.props.match.params.id;
         this.state = {
             cards: [],
@@ -994,11 +1014,14 @@ class KudoEvent extends react_1.default.Component {
             is_active: false,
             shouldDisplayModal: false,
             nameList: [],
-            nameListLoading: true
+            nameListLoading: true,
+            show: false,
+            role: client_2.getCookie('connect.role')
         };
         this.bind = {
             onCardListRefresh: this.onCardListRefresh.bind(this),
-            onHideModal: this.onHideModal.bind(this)
+            onHideModal: this.onHideModal.bind(this),
+            ukaz: this.ukaz.bind(this)
         };
     }
     componentDidMount() {
@@ -1034,12 +1057,17 @@ class KudoEvent extends react_1.default.Component {
                 this.getEvent(),
                 this.getKnight(),
                 location.href.indexOf('?tv=true') > -1 ? (react_1.default.createElement(QRcode_1.default, { url: location.protocol + '//' + location.host + location.pathname })) : (react_1.default.createElement(KudoForm_1.default, { isLoading: this.state.nameListLoading, peopleList: this.state.nameList, eventId: this.eventId, isActive: this.state.is_active }))),
+            react_1.default.createElement("button", { type: "button", onClick: this.bind.ukaz }, "click me"),
             react_1.default.createElement("div", { className: "event_cards" }, this.processCards()),
             react_1.default.createElement(CardNotification_1.default, null),
             this.state.shouldDisplayModal ? react_1.default.createElement(CardModal, { newCardProps: newCard, onClick: this.bind.onHideModal }) : null,
             react_1.default.createElement(KudoSettings_1.default, null))) : (react_1.default.createElement("div", null));
     }
+    ukaz() {
+        this.setState({ show: !this.state.show });
+    }
     onHideModal() {
+        alert(this.state.shouldDisplayModal);
         this.setState({ shouldDisplayModal: false });
     }
     onCardListRefresh() {
@@ -1051,7 +1079,7 @@ class KudoEvent extends react_1.default.Component {
             if (this.state.cards.length < data.length) {
                 document.dispatchEvent(new CustomEvent('kudoz::newNotification'));
             }
-            data.sort((a, b) => b.likes - a.likes);
+            /*data.sort((a, b) => b.likes - a.likes);*/ /* odstranenie zoradzovania*/
             this.setState({ cards: data });
         });
         api_1.select('/api/events', { _id: this.eventId })
@@ -1120,9 +1148,16 @@ class KudoEvent extends react_1.default.Component {
     getKnight() {
         // TODO get most frequent name from array
         const list = client_1.getKudoNumberList(this.state.cards);
-        return (react_1.default.createElement("div", { style: { position: 'relative' } },
-            react_1.default.createElement("div", { className: "kudo-info-points", title: list.map((person) => `${person.name}:${person.count}`).join(', ') }, "i"),
-            react_1.default.createElement(Knight_1.Knight, Object.assign({}, { mostKudos: client_1.getKudoKnight(list) }))));
+        if (this.state.role === 'admin' || this.state.is_active === false || this.state.show === true) {
+            return (react_1.default.createElement("div", { style: { position: 'relative' } },
+                react_1.default.createElement("div", { className: "kudo-info-points", title: list.map((person) => `${person.name}:${person.count}`).join(', ') }, "i"),
+                react_1.default.createElement(Knight_1.Knight, Object.assign({}, { mostKudos: client_1.getKudoKnight(list) }))));
+        }
+        else {
+            return (react_1.default.createElement("div", { style: { position: 'relative' } },
+                react_1.default.createElement("div", { className: "kudo-info-points", title: list.map((person) => `${person.name}:${person.count}`).join(', ') }, "i"),
+                react_1.default.createElement(Knight_1.KnightForUser, Object.assign({}, { mostKudos: client_1.getKudoKnight(list) }))));
+        }
     }
 }
 exports.default = KudoEvent;

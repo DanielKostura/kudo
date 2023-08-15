@@ -13,7 +13,7 @@ export default function App() {
           <div>Ahoj, toto je main routa, tu mozno raz daco bude, mozno nie :P</div>
         </Route>
         <Route path="/priklad">
-          <div>Priklad na inu route </div>
+          <div>Priklad na inu route</div>
         </Route>
         <Route path="/event/:id" component={KudoEvent} />
       </Switch>
