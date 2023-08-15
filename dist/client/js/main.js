@@ -25,9 +25,9 @@ function App() {
     return (React.createElement(react_router_dom_1.BrowserRouter, null,
         React.createElement(react_router_dom_1.Switch, null,
             React.createElement(react_router_dom_1.Route, { exact: true, path: "/" },
-                React.createElement("div", null, "Ahoj, toto je main routa, tu mozno raz daco bude, mozno nieeeeee :P")),
+                React.createElement("div", null, "Ahoj, toto je main routa, tu mozno raz daco bude, mozno nie :P")),
             React.createElement(react_router_dom_1.Route, { path: "/priklad" },
-                React.createElement("div", null, "Priklad na inu route aaaaaaaaaaaaaaaaa ")),
+                React.createElement("div", null, "Priklad na inu route")),
             React.createElement(react_router_dom_1.Route, { path: "/event/:id", component: KudoEvent_1.default }))));
 }
 exports.default = App;
@@ -57,7 +57,7 @@ exports.Knight = (props) => (React.createElement("div", { className: "kudoKnight
     React.createElement("div", { className: "kudoKnight__content" },
         React.createElement("h3", null, "Kudo Knight"),
         React.createElement("h2", null, props.mostKudos))));
-exports.KnightForUser = (props) => (React.createElement("div", { className: "kudoKnight" },
+exports.KnightForUser = (props) => ( /*zmenaKnight pridanie KnightForUser*/React.createElement("div", { className: "kudoKnight" },
     React.createElement("div", null,
         React.createElement("img", { src: "/img/007-crusader.png" })),
     React.createElement("div", { className: "kudoKnight__content" },
@@ -498,7 +498,7 @@ class Card extends react_1.Component {
         };
         this.state = {
             voted: false,
-            role: client_1.getCookie('connect.role')
+            role: client_1.getCookie('connect.role') /*zmenaLikes zistenie role*/
         };
     }
     render() {
@@ -510,22 +510,23 @@ class Card extends react_1.Component {
                 react_1.default.createElement("p", null, this.props.text)),
             this.getVoteButton()));
     }
-    /*"card__likes-noVote"           "card__likes-yourChoice"            "card__likes"             {this.props.likes}*/
     getVoteButton() {
         if (this.props.isActive === false) { /*ked je event neaktivny pre vsetkych*/
             return (react_1.default.createElement("div", { className: "card__likes-noVote", title: "event is inactive" }, this.props.likes));
         }
-        else if (this.yourChoice(this.props.eventID, this.props.cardID) && this.state.role != "admin") { /* ked user uz lajkol*/
-            return (react_1.default.createElement("div", { className: "card__likes-yourChoice", title: "your choice" }, "?"));
+        else if (this.state.role != "admin") { /*ked si user*/
+            if (this.yourChoice(this.props.eventID, this.props.cardID)) { /* user po liku*/
+                return (react_1.default.createElement("div", { className: "card__likes-yourChoice", title: "your choice" }, "?"));
+            }
+            else { /* user pred likom*/
+                return (react_1.default.createElement("div", { onClick: this.vote, "data-eventid": this.props.eventID, "data-cardid": this.props.cardID, className: "card__likes", title: "vote!!!" }, "?"));
+            }
         }
-        else if (this.state.role != "admin") { /* ked nie si admin pred laknutym*/
-            return (react_1.default.createElement("div", { onClick: this.vote, "data-eventid": this.props.eventID, "data-cardid": this.props.cardID, className: "card__likes", title: "vote!!!" }, "?"));
-        }
-        else {
-            if (this.yourChoice(this.props.eventID, this.props.cardID)) { /* ked si admin a uz lajkol*/
+        else { /*ked si admin*/
+            if (this.yourChoice(this.props.eventID, this.props.cardID)) { /*admin po liku*/
                 return (react_1.default.createElement("div", { className: "card__likes-yourChoice", title: "your choice" }, this.props.likes));
             }
-            else {
+            else { /*admin pred likom*/
                 return (react_1.default.createElement("div", { onClick: this.vote, "data-eventid": this.props.eventID, "data-cardid": this.props.cardID, className: "card__likes", title: "vote!!!" }, this.props.likes));
             }
         }
@@ -1003,10 +1004,8 @@ function CardModal({ newCardProps, onClick }) {
             react_1.default.createElement(Card_1.default, Object.assign({}, newCardProps)))));
 }
 class KudoEvent extends react_1.default.Component {
-    /*static ukaz: boolean;*/
     constructor(props) {
         super(props);
-        /*zmena*/
         this.eventId = this.props.match.params.id;
         this.state = {
             cards: [],
@@ -1015,13 +1014,12 @@ class KudoEvent extends react_1.default.Component {
             shouldDisplayModal: false,
             nameList: [],
             nameListLoading: true,
-            show: false,
-            role: client_2.getCookie('connect.role')
+            /*show: false,*/ /*zmenaButton def show premennej*/
+            role: client_2.getCookie('connect.role') /*zmenaKnight zistenie role*/
         };
         this.bind = {
             onCardListRefresh: this.onCardListRefresh.bind(this),
             onHideModal: this.onHideModal.bind(this),
-            ukaz: this.ukaz.bind(this)
         };
     }
     componentDidMount() {
@@ -1057,17 +1055,18 @@ class KudoEvent extends react_1.default.Component {
                 this.getEvent(),
                 this.getKnight(),
                 location.href.indexOf('?tv=true') > -1 ? (react_1.default.createElement(QRcode_1.default, { url: location.protocol + '//' + location.host + location.pathname })) : (react_1.default.createElement(KudoForm_1.default, { isLoading: this.state.nameListLoading, peopleList: this.state.nameList, eventId: this.eventId, isActive: this.state.is_active }))),
-            react_1.default.createElement("button", { type: "button", onClick: this.bind.ukaz }, "click me"),
             react_1.default.createElement("div", { className: "event_cards" }, this.processCards()),
             react_1.default.createElement(CardNotification_1.default, null),
             this.state.shouldDisplayModal ? react_1.default.createElement(CardModal, { newCardProps: newCard, onClick: this.bind.onHideModal }) : null,
             react_1.default.createElement(KudoSettings_1.default, null))) : (react_1.default.createElement("div", null));
     }
-    ukaz() {
-        this.setState({ show: !this.state.show });
+    /*zmenaButton vytvorenie buttonu a funkcie ktora na neho odkazuje
+    <button type = "button" onClick = {this.bind.ukaz}>click me</button>
+    private ukaz(): void {
+      this.setState({ show: !this.state.show });
     }
+    */
     onHideModal() {
-        alert(this.state.shouldDisplayModal);
         this.setState({ shouldDisplayModal: false });
     }
     onCardListRefresh() {
@@ -1079,7 +1078,7 @@ class KudoEvent extends react_1.default.Component {
             if (this.state.cards.length < data.length) {
                 document.dispatchEvent(new CustomEvent('kudoz::newNotification'));
             }
-            /*data.sort((a, b) => b.likes - a.likes);*/ /* odstranenie zoradzovania*/
+            /*data.sort((a, b) => b.likes - a.likes);*/ /* zmenaSort*/
             this.setState({ cards: data });
         });
         api_1.select('/api/events', { _id: this.eventId })
@@ -1148,7 +1147,7 @@ class KudoEvent extends react_1.default.Component {
     getKnight() {
         // TODO get most frequent name from array
         const list = client_1.getKudoNumberList(this.state.cards);
-        if (this.state.role === 'admin' || this.state.is_active === false || this.state.show === true) {
+        if (this.state.role === 'admin' || this.state.is_active === false) { /*zmenaKnight if*/
             return (react_1.default.createElement("div", { style: { position: 'relative' } },
                 react_1.default.createElement("div", { className: "kudo-info-points", title: list.map((person) => `${person.name}:${person.count}`).join(', ') }, "i"),
                 react_1.default.createElement(Knight_1.Knight, Object.assign({}, { mostKudos: client_1.getKudoKnight(list) }))));
