@@ -104,27 +104,53 @@ export default class KudoEvent extends React.Component<{}, IState> {
   }
 
   public render() {
-    const newCard =
-      this.state.cards.length > 0 ? this.getCardProps(this.state.cards[this.state.cards.length - 1]) : undefined;
-    return this.state.event ? (
-      <div className="kudoEvent">
-        <div className="event_info">
-          {this.getEvent()}
-          {this.getKnight()}
-          {location.href.indexOf('?tv=true') > -1 ? (
-            <QRcode url={location.protocol + '//' + location.host + location.pathname} />
-          ) : (
-            <KudoForm isLoading={this.state.nameListLoading} peopleList={this.state.nameList} eventId={this.eventId} isActive={this.state.is_active} />
-          )}
+    if(location.href.indexOf('?tv=true') > -1){
+      const newCard =
+        this.state.cards.length > 0 ? this.getCardProps(this.state.cards[this.state.cards.length - 1]) : undefined;
+      return this.state.event ? (
+        <div className="kudoEvent">
+          <div className="event_info">
+            {this.getEvent()}
+            {this.getKnight()}
+            {location.href.indexOf('?tv=true') > -1 ? (
+              <QRcode url={location.protocol + '//' + location.host + location.pathname} />
+            ) : (
+              <KudoForm isLoading={this.state.nameListLoading} peopleList={this.state.nameList} eventId={this.eventId} isActive={this.state.is_active} />
+            )}
+          </div>
+          <div className="event_cards-TVmode">{this.processCards()}</div>
+          <CardNotification />
+          {this.state.shouldDisplayModal ? <CardModal newCardProps={newCard} onClick={this.bind.onHideModal} /> : null}
+          <KudoSettings />
         </div>
-        <div className="event_cards">{this.processCards()}</div>
-        <CardNotification />
-        {this.state.shouldDisplayModal ? <CardModal newCardProps={newCard} onClick={this.bind.onHideModal} /> : null}
-        <KudoSettings />
-      </div>
-    ) : (
-      <div />
-    );
+      ) : (
+        <div />
+      );
+    }
+    
+    else{
+      const newCard =
+        this.state.cards.length > 0 ? this.getCardProps(this.state.cards[this.state.cards.length - 1]) : undefined;
+      return this.state.event ? (
+        <div className="kudoEvent">
+          <div className="event_info">
+            {this.getEvent()}
+            {this.getKnight()}
+            {location.href.indexOf('?tv=true') > -1 ? (
+              <QRcode url={location.protocol + '//' + location.host + location.pathname} />
+            ) : (
+              <KudoForm isLoading={this.state.nameListLoading} peopleList={this.state.nameList} eventId={this.eventId} isActive={this.state.is_active} />
+            )}
+          </div>
+          <div className="event_cards">{this.processCards()}</div>
+          <CardNotification />
+          {this.state.shouldDisplayModal ? <CardModal newCardProps={newCard} onClick={this.bind.onHideModal} /> : null}
+          <KudoSettings />
+        </div>
+      ) : (
+        <div />
+      );
+    }
   }
 
   /*zmenaButton vytvorenie buttonu a funkcie ktora na neho odkazuje*/
@@ -152,7 +178,7 @@ export default class KudoEvent extends React.Component<{}, IState> {
         document.dispatchEvent(new CustomEvent('kudoz::newNotification'));
       }
 
-      /*data.sort((a, b) => b.likes - a.likes);*//* zmenaSort*/
+      data.sort((a, b) => a.awardedTo.localeCompare(b.awardedTo));/* zmenaSort*/
       this.setState({ cards: data });
     });
 
@@ -218,16 +244,16 @@ export default class KudoEvent extends React.Component<{}, IState> {
       cardID: card_data._id,
       cardType: card_data.type,
       eventID: card_data.eventId,
-      highlighted: this.isHighligted(card_data._id as string),
+      /*highlighted: this.isHighligted(card_data._id as string),*/
       isActive: this.state.is_active,
       likes: card_data.likes,
       text: card_data.text
     };
   }
 
-  private isHighligted(cardId: string): boolean {
+  /*private isHighligted(cardId: string): boolean {
     return this.state.cards.map((card) => card._id).indexOf(cardId) < 7;
-  }
+  }*/
 
   private getKnight(): JSX.Element {
     // TODO get most frequent name from array

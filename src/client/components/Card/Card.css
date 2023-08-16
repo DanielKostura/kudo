@@ -1,6 +1,6 @@
 :root {
   --card-bg-color-text: rgba(255, 255, 255, 0.9);
-  --card-bg-color-body-highlighted: rgba(253, 240, 213, 0.9);
+  /*--card-bg-color-body-highlighted: rgba(253, 240, 213, 0.9);*/
   --card-bg-color-icon: linear-gradient(180deg, rgba(255, 255, 255, 0.9) 0%, rgba(255, 255, 255, 0) 100%),
     rgba(198, 216, 211, 0.9);
   --card-text-color-h3: #331832;
@@ -36,38 +36,51 @@
 }
 
 .card .card__text,
-.card .card__text-highlighted {
+.card .card__text-TVmode {
   width: 100%;
 }
 
 .card .card__text,
-.card .card__text-highlighted {
+.card .card__text-TVmode {
   border-radius: 0px 10px 10px 0px;
   padding: 20px 17px 20px 17px;
   background: var(--card-bg-color-text);
 }
-.card .card__text-highlighted {
-  background: var(--card-bg-color-body-highlighted);
-}
 
-.card .card__text h3,
-.card .card__text-highlighted h3 {
+.card .card__text h3{ /*napis na karte*/
   font-family: 'Ubuntu_Medium';
-  font-size: 14px;
+  font-size: 14px; 
   line-height: 16px;
   color: var(--card-text-color-h3);
   margin: 0px;
   margin-bottom: 6px;
 }
 
-.card .card__text p,
-.card .card__text-highlighted p {
+.card .card__text-TVmode h3{ /*napis na karte pocas TV modu*/
+  font-family: 'Ubuntu_Medium';
+  font-size: 28px; /*14px; */
+  line-height: 32px; /*16px;*/
+  color: var(--card-text-color-h3);
+  margin: 0px;
+  margin-bottom: 6px;
+}
+
+.card .card__text p { /*test na karte*/
   font-family: 'Ubuntu_Normal';
   font-size: 12px;
   line-height: 14px;
   color: var(--card-text-color);
   margin: 0px;
 }
+
+.card .card__text-TVmode p{ /*test na karte pocas TV modu*/
+  font-family: 'Ubuntu_Normal';
+  font-size: 24px; /*12px;*/
+  line-height: 28px; /*14px;*/
+  color: var(--card-text-color);
+  margin: 0px;
+}
+
 
 .card .card__likes,
 .card .card__likes-yourChoice,

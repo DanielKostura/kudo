@@ -466,6 +466,7 @@ __webpack_require__(241);
 class Card extends react_1.Component {
     constructor(props) {
         super(props);
+        /*40    <div className={this.props.highlighted ? 'card__text-highlighted ' : 'card__text__TVmode'}>*/
         this.vote = (event) => {
             const eventID = event.currentTarget.dataset.eventid;
             const cardID = event.currentTarget.dataset.cardid;
@@ -502,13 +503,24 @@ class Card extends react_1.Component {
         };
     }
     render() {
-        return (react_1.default.createElement("div", { className: "card" },
-            react_1.default.createElement("div", { className: "card__icon" },
-                react_1.default.createElement(CardIcon_1.CardIcon, { cardType: this.props.cardType })),
-            react_1.default.createElement("div", { className: this.props.highlighted ? 'card__text-highlighted ' : 'card__text' },
-                react_1.default.createElement("h3", null, this.props.awarded),
-                react_1.default.createElement("p", null, this.props.text)),
-            this.getVoteButton()));
+        if (location.href.indexOf('?tv=true') > -1) { /*ak je TV mode*/
+            return (react_1.default.createElement("div", { className: "card" },
+                react_1.default.createElement("div", { className: "card__icon" },
+                    react_1.default.createElement(CardIcon_1.CardIcon, { cardType: this.props.cardType })),
+                react_1.default.createElement("div", { className: 'card__text-TVmode' },
+                    react_1.default.createElement("h3", null, this.props.awarded),
+                    react_1.default.createElement("p", null, this.props.text)),
+                this.getVoteButton()));
+        }
+        else { /*ak nie je TV mode*/
+            return (react_1.default.createElement("div", { className: "card" },
+                react_1.default.createElement("div", { className: "card__icon" },
+                    react_1.default.createElement(CardIcon_1.CardIcon, { cardType: this.props.cardType })),
+                react_1.default.createElement("div", { className: 'card__text' },
+                    react_1.default.createElement("h3", null, this.props.awarded),
+                    react_1.default.createElement("p", null, this.props.text)),
+                this.getVoteButton()));
+        }
     }
     getVoteButton() {
         if (this.props.isActive === false) { /*ked je event neaktivny pre vsetkych*/
@@ -596,7 +608,7 @@ module.exports = exported;
 var ___CSS_LOADER_API_IMPORT___ = __webpack_require__(223);
 exports = ___CSS_LOADER_API_IMPORT___(false);
 // Module
-exports.push([module.i, ":root {\r\n  --card-bg-color-text: rgba(255, 255, 255, 0.9);\r\n  --card-bg-color-body-highlighted: rgba(253, 240, 213, 0.9);\r\n  --card-bg-color-icon: linear-gradient(180deg, rgba(255, 255, 255, 0.9) 0%, rgba(255, 255, 255, 0) 100%),\r\n    rgba(198, 216, 211, 0.9);\r\n  --card-text-color-h3: #331832;\r\n  --card-text-color: #6d686d;\r\n  --card-bg-color-likes: #f0544f;\r\n  --card-bg-color-likes-yourChoice: #2eb378;\r\n  --card-bg-color-likes-noVote: #bcbdc4;\r\n  --card-text-color-likes: #ffffff;\r\n}\r\n\r\n.card {\r\n  display: flex;\r\n  position: relative;\r\n  min-height: 80px;\r\n  border-radius: 0px 10px 10px 0px;\r\n  box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.1);\r\n  background: transparent;\r\n  border-radius: 10px;\r\n  margin: 11px;\r\n}\r\n\r\n.card .card__icon {\r\n  min-width: 70px;\r\n  width: 70px;\r\n  background: var(--card-bg-color-icon);\r\n  border-radius: 10px 0px 0px 10px;\r\n  text-align: center;\r\n}\r\n\r\n.card .card__icon img {\r\n  width: 33px;\r\n  margin: 0 auto;\r\n}\r\n\r\n.card .card__text,\r\n.card .card__text-highlighted {\r\n  width: 100%;\r\n}\r\n\r\n.card .card__text,\r\n.card .card__text-highlighted {\r\n  border-radius: 0px 10px 10px 0px;\r\n  padding: 20px 17px 20px 17px;\r\n  background: var(--card-bg-color-text);\r\n}\r\n.card .card__text-highlighted {\r\n  background: var(--card-bg-color-body-highlighted);\r\n}\r\n\r\n.card .card__text h3,\r\n.card .card__text-highlighted h3 {\r\n  font-family: 'Ubuntu_Medium';\r\n  font-size: 14px;\r\n  line-height: 16px;\r\n  color: var(--card-text-color-h3);\r\n  margin: 0px;\r\n  margin-bottom: 6px;\r\n}\r\n\r\n.card .card__text p,\r\n.card .card__text-highlighted p {\r\n  font-family: 'Ubuntu_Normal';\r\n  font-size: 12px;\r\n  line-height: 14px;\r\n  color: var(--card-text-color);\r\n  margin: 0px;\r\n}\r\n\r\n.card .card__likes,\r\n.card .card__likes-yourChoice,\r\n.card .card__likes-noVote {\r\n  width: 22px;\r\n  height: 22px;\r\n  position: absolute;\r\n  top: -11px;\r\n  right: -11px;\r\n  background: var(--card-bg-color-likes-yourChoice);\r\n  border-radius: 50%;\r\n  color: var(--card-text-color-likes);\r\n  font-family: 'Ubuntu_Bold';\r\n  font-size: 10px;\r\n  line-height: 22px;\r\n  text-align: center;\r\n  transition: background-color 0.3s ease-out;\r\n}\r\n.card .card__likes {\r\n  cursor: pointer;\r\n}\r\n\r\n.card .card__likes-noVote {\r\n  background: var(--card-bg-color-likes-noVote);\r\n}\r\n\r\n.card .card__likes-yourChoice {\r\n  background: var(--card-bg-color-likes);\r\n  animation: pulse 0.3s;\r\n  animation-iteration-count: 2;\r\n}\r\n\r\n@keyframes pulse {\r\n  from {\r\n    transform: scale(1, 1);\r\n  }\r\n  50% {\r\n    transform: scale(1.3, 1.3);\r\n  }\r\n  to {\r\n    transform: scale(1, 1);\r\n  }\r\n}\r\n", ""]);
+exports.push([module.i, ":root {\r\n  --card-bg-color-text: rgba(255, 255, 255, 0.9);\r\n  /*--card-bg-color-body-highlighted: rgba(253, 240, 213, 0.9);*/\r\n  --card-bg-color-icon: linear-gradient(180deg, rgba(255, 255, 255, 0.9) 0%, rgba(255, 255, 255, 0) 100%),\r\n    rgba(198, 216, 211, 0.9);\r\n  --card-text-color-h3: #331832;\r\n  --card-text-color: #6d686d;\r\n  --card-bg-color-likes: #f0544f;\r\n  --card-bg-color-likes-yourChoice: #2eb378;\r\n  --card-bg-color-likes-noVote: #bcbdc4;\r\n  --card-text-color-likes: #ffffff;\r\n}\r\n\r\n.card {\r\n  display: flex;\r\n  position: relative;\r\n  min-height: 80px;\r\n  border-radius: 0px 10px 10px 0px;\r\n  box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.1);\r\n  background: transparent;\r\n  border-radius: 10px;\r\n  margin: 11px;\r\n}\r\n\r\n.card .card__icon {\r\n  min-width: 70px;\r\n  width: 70px;\r\n  background: var(--card-bg-color-icon);\r\n  border-radius: 10px 0px 0px 10px;\r\n  text-align: center;\r\n}\r\n\r\n.card .card__icon img {\r\n  width: 33px;\r\n  margin: 0 auto;\r\n}\r\n\r\n.card .card__text,\r\n.card .card__text-TVmode {\r\n  width: 100%;\r\n}\r\n\r\n.card .card__text,\r\n.card .card__text-TVmode {\r\n  border-radius: 0px 10px 10px 0px;\r\n  padding: 20px 17px 20px 17px;\r\n  background: var(--card-bg-color-text);\r\n}\r\n\r\n.card .card__text h3{ /*napis na karte*/\r\n  font-family: 'Ubuntu_Medium';\r\n  font-size: 14px; \r\n  line-height: 16px;\r\n  color: var(--card-text-color-h3);\r\n  margin: 0px;\r\n  margin-bottom: 6px;\r\n}\r\n\r\n.card .card__text-TVmode h3{ /*napis na karte pocas TV modu*/\r\n  font-family: 'Ubuntu_Medium';\r\n  font-size: 28px; /*14px; */\r\n  line-height: 32px; /*16px;*/\r\n  color: var(--card-text-color-h3);\r\n  margin: 0px;\r\n  margin-bottom: 6px;\r\n}\r\n\r\n.card .card__text p { /*test na karte*/\r\n  font-family: 'Ubuntu_Normal';\r\n  font-size: 12px;\r\n  line-height: 14px;\r\n  color: var(--card-text-color);\r\n  margin: 0px;\r\n}\r\n\r\n.card .card__text-TVmode p{ /*test na karte pocas TV modu*/\r\n  font-family: 'Ubuntu_Normal';\r\n  font-size: 24px; /*12px;*/\r\n  line-height: 28px; /*14px;*/\r\n  color: var(--card-text-color);\r\n  margin: 0px;\r\n}\r\n\r\n\r\n.card .card__likes,\r\n.card .card__likes-yourChoice,\r\n.card .card__likes-noVote {\r\n  width: 22px;\r\n  height: 22px;\r\n  position: absolute;\r\n  top: -11px;\r\n  right: -11px;\r\n  background: var(--card-bg-color-likes-yourChoice);\r\n  border-radius: 50%;\r\n  color: var(--card-text-color-likes);\r\n  font-family: 'Ubuntu_Bold';\r\n  font-size: 10px;\r\n  line-height: 22px;\r\n  text-align: center;\r\n  transition: background-color 0.3s ease-out;\r\n}\r\n.card .card__likes {\r\n  cursor: pointer;\r\n}\r\n\r\n.card .card__likes-noVote {\r\n  background: var(--card-bg-color-likes-noVote);\r\n}\r\n\r\n.card .card__likes-yourChoice {\r\n  background: var(--card-bg-color-likes);\r\n  animation: pulse 0.3s;\r\n  animation-iteration-count: 2;\r\n}\r\n\r\n@keyframes pulse {\r\n  from {\r\n    transform: scale(1, 1);\r\n  }\r\n  50% {\r\n    transform: scale(1.3, 1.3);\r\n  }\r\n  to {\r\n    transform: scale(1, 1);\r\n  }\r\n}\r\n", ""]);
 // Exports
 module.exports = exports;
 
@@ -876,7 +888,7 @@ module.exports = exported;
 var ___CSS_LOADER_API_IMPORT___ = __webpack_require__(223);
 exports = ___CSS_LOADER_API_IMPORT___(false);
 // Module
-exports.push([module.i, ".kudoEvent {\r\n  background: url('/img/general-background.png');\r\n  background-size: cover;\r\n  font-family: 'Ubuntu', Arial, Helvetica, sans-serif;\r\n  padding-right: 0px;\r\n  min-height: calc(100vh + 50px);\r\n  width: 100%;\r\n}\r\n\r\n.kudoEvent .event_info {\r\n  float: left;\r\n  flex-basis: 460px;\r\n  width: 460px;\r\n  min-width: 460px;\r\n  height: 100%;\r\n  display: flex;\r\n  flex-direction: column;\r\n  align-items: start;\r\n  justify-content: center;\r\n  padding: 50px 50px 0 100px;\r\n}\r\n\r\n.kudoEvent .event_info > div {\r\n  width: 100%;\r\n  margin-bottom: 50px;\r\n}\r\n\r\n.kudoEvent .event_info .eventInfo {\r\n  margin-bottom: 28px;\r\n}\r\n\r\n.kudoEvent .event_info .kudoForm {\r\n  margin-bottom: 0px;\r\n}\r\n\r\n.kudoEvent .event_cards {\r\n  margin-left: 100px;\r\n  padding: 50px 0;\r\n  display: flex;\r\n  flex-direction: row;\r\n  flex-wrap: wrap;\r\n  overflow-y: auto;\r\n  flex: 1;\r\n}\r\n\r\n.kudoEvent .event_cards .card {\r\n  width: 296px;\r\n}\r\n\r\n.kudoEvent .newCard {\r\n  display: flex;\r\n  z-index: 10;\r\n  width: 100%;\r\n  height: 100%;\r\n  top: 0;\r\n  left: 0;\r\n  padding: 4%;\r\n  position: absolute;\r\n  background: rgba(83, 83, 83, 0.3);\r\n}\r\n\r\n.kudoEvent .newCard.hidden {\r\n  display: none;\r\n}\r\n\r\n.kudoEvent .newCard > div {\r\n  position: relative;\r\n  margin: auto;\r\n  width: 70%;\r\n  height: 70%;\r\n  animation: popup 0.3s ease-out;\r\n}\r\n\r\n.kudoEvent .newCard .close {\r\n  position: absolute;\r\n  right: 12px;\r\n  top: 12px;\r\n  width: 12px;\r\n  height: 12px;\r\n  z-index: 11;\r\n  cursor: pointer;\r\n}\r\n\r\n.kudoEvent .newCard .card {\r\n  height: 100%;\r\n  width: 100%;\r\n  margin: 0;\r\n}\r\n\r\n.kudoEvent .newCard .card .card__icon {\r\n  width: 33%;\r\n  background: linear-gradient(180deg, rgba(255, 255, 255, 1) 0%, rgba(255, 255, 255, 0) 100%),\r\n    rgba(198, 216, 211, 1);\r\n}\r\n\r\n.kudoEvent .newCard .card .card__icon img {\r\n  width: 60%;\r\n}\r\n\r\n.kudoEvent .newCard .card .card__text,\r\n.kudoEvent .newCard .card .card__text-highlighted {\r\n  display: flex;\r\n  flex-direction: column;\r\n  justify-content: center;\r\n  background: #fdf0d5;\r\n}\r\n\r\n.kudoEvent .newCard .card .card__text h3,\r\n.kudoEvent .newCard .card .card__text-highlighted h3 {\r\n  font-size: 46px;\r\n  line-height: 54px;\r\n  padding: 1rem 2rem;\r\n  text-align: center;\r\n  margin: 0;\r\n}\r\n\r\n.kudoEvent .newCard .card .card__text p,\r\n.kudoEvent .newCard .card .card__text-highlighted p {\r\n  font-size: 40px;\r\n  line-height: 49px;\r\n  padding: 1rem 2rem;\r\n  display: flex;\r\n  justify-content: center;\r\n  overflow: hidden;\r\n}\r\n\r\n.kudoEvent .newCard .card .card__likes {\r\n  display: none;\r\n}\r\n.kudoEvent .kudo-info-points {\r\n  background: #ffdc63;\r\n    right: 0;\r\n    z-index: 2;\r\n    padding: 0 10px;\r\n    border-radius: 10px;\r\n    position: absolute;\r\n    box-shadow: 0px 2px 5px #c8d9d5;\r\n    cursor: help;\r\n}\r\n\r\n@media only screen and (max-width: 800px) {\r\n  .kudoEvent {\r\n    padding: 0 0 0 20px;\r\n  }\r\n\r\n  .kudoEvent .event_info {\r\n    flex-basis: 320px;\r\n    width: 320px;\r\n    min-width: 320px;\r\n    padding: 0px 10px 0 0px;\r\n  }\r\n\r\n  .kudoEvent .event_cards {\r\n    margin-left: 50px;\r\n  }\r\n}\r\n\r\n@media only screen and (max-width: 580px) {\r\n  .kudoEvent {\r\n    background: #0b1f39;\r\n    background: linear-gradient(140deg, #825640 0%, #0b1f39 100%);\r\n    flex-direction: column;\r\n    padding: 0px;\r\n    height: auto;\r\n  }\r\n\r\n  .kudoEvent .event_info {\r\n    width: 100%;\r\n    margin: 0;\r\n    padding: 7%;\r\n  }\r\n\r\n  .kudoEvent .event_cards {\r\n    width: 100%;\r\n    margin: 0;\r\n    padding: 7%;\r\n  }\r\n\r\n  .kudoEvent .event_cards .card {\r\n    margin: 10px 0;\r\n    min-width: unset;\r\n    width: 100%;\r\n  }\r\n\r\n  .kudoEvent .event_cards .card .card__text {\r\n    min-width: unset;\r\n  }\r\n\r\n  .kudoEvent .newCard {\r\n    display: none;\r\n  }\r\n}\r\n\r\n@keyframes popup {\r\n  0% {\r\n    transform: scale(0);\r\n  }\r\n  100% {\r\n    transform: scale(1);\r\n  }\r\n}", ""]);
+exports.push([module.i, ".kudoEvent {\r\n  background: url('/img/general-background.png');\r\n  background-size: cover;\r\n  font-family: 'Ubuntu', Arial, Helvetica, sans-serif;\r\n  padding-right: 0px;\r\n  min-height: calc(100vh + 50px);\r\n  width: 100%;\r\n}\r\n\r\n.kudoEvent .event_info { /*Totally Awesome a Give Kudos*/\r\n  float: left;\r\n  flex-basis: 460px;\r\n  width: 460px;\r\n  min-width: 460px;\r\n  height: 100%;\r\n  display: flex;\r\n  flex-direction: column; \r\n  align-items: start;\r\n  justify-content: center;\r\n  padding: 50px 50px 0 100px;\r\n}\r\n\r\n.kudoEvent .event_info > div {\r\n  width: 100%;\r\n  margin-bottom: 50px;\r\n}\r\n\r\n.kudoEvent .event_info .eventInfo {\r\n  margin-bottom: 28px;\r\n}\r\n\r\n.kudoEvent .event_info .kudoForm {\r\n  margin-bottom: 0px;\r\n}\r\n\r\n.kudoEvent .event_cards-TVmode,\r\n.kudoEvent .event_cards { /*usporiadanie cards*/\r\n  margin-left: 100px;\r\n  padding: 50px 0;\r\n  display: flex;\r\n  flex-direction: row;\r\n  flex-wrap: wrap;\r\n  overflow-y: auto;\r\n  flex: 1;\r\n}\r\n\r\n\r\n.kudoEvent .event_cards .card { /*velkost karty*/\r\n  width: 296px; /*455px*/\r\n}\r\n\r\n/* ked nebude potreba vymazat*/\r\n.kudoEvent .event_cards-TVmode .card { /*velkost karty v TVmode*/\r\n  width: 455px; /*296px; /* 454px-457px*/\r\n}\r\n\r\n.kudoEvent .newCard {\r\n  display: flex;\r\n  z-index: 10;\r\n  width: 100%;\r\n  height: 100%;\r\n  top: 0;\r\n  left: 0;\r\n  padding: 4%;\r\n  position: absolute;\r\n  background: rgba(83, 83, 83, 0.3);\r\n}\r\n\r\n.kudoEvent .newCard.hidden {\r\n  display: none;\r\n}\r\n\r\n.kudoEvent .newCard > div {\r\n  position: relative;\r\n  margin: auto;\r\n  width: 70%;\r\n  height: 70%;\r\n  animation: popup 0.3s ease-out;\r\n}\r\n\r\n.kudoEvent .newCard .close {\r\n  position: absolute;\r\n  right: 12px;\r\n  top: 12px;\r\n  width: 12px;\r\n  height: 12px;\r\n  z-index: 11;\r\n  cursor: pointer;\r\n}\r\n\r\n.kudoEvent .newCard .card {\r\n  height: 100%;\r\n  width: 100%;\r\n  margin: 0;\r\n}\r\n\r\n.kudoEvent .newCard .card .card__icon {\r\n  width: 33%;\r\n  background: linear-gradient(180deg, rgba(255, 255, 255, 1) 0%, rgba(255, 255, 255, 0) 100%),\r\n    rgba(198, 216, 211, 1);\r\n}\r\n\r\n.kudoEvent .newCard .card .card__icon img {\r\n  width: 60%;\r\n}\r\n\r\n.kudoEvent .newCard .card .card__text{\r\n  display: flex;\r\n  flex-direction: column;\r\n  justify-content: center;\r\n  background: #fdf0d5;\r\n}\r\n\r\n.kudoEvent .newCard .card .card__text h3{\r\n  font-size: 46px;\r\n  line-height: 54px;\r\n  padding: 1rem 2rem;\r\n  text-align: center;\r\n  margin: 0;\r\n}\r\n\r\n.kudoEvent .newCard .card .card__text p{\r\n  font-size: 40px;\r\n  line-height: 49px;\r\n  padding: 1rem 2rem;\r\n  display: flex;\r\n  justify-content: center;\r\n  overflow: hidden;\r\n}\r\n\r\n.kudoEvent .newCard .card .card__likes {\r\n  display: none;\r\n}\r\n.kudoEvent .kudo-info-points {\r\n  background: #ffdc63;\r\n    right: 0;\r\n    z-index: 2;\r\n    padding: 0 10px;\r\n    border-radius: 10px;\r\n    position: absolute;\r\n    box-shadow: 0px 2px 5px #c8d9d5;\r\n    cursor: help;\r\n}\r\n\r\n@media only screen and (max-width: 800px) {\r\n  .kudoEvent {\r\n    padding: 0 0 0 20px;\r\n  }\r\n\r\n  .kudoEvent .event_info {\r\n    flex-basis: 320px;\r\n    width: 320px;\r\n    min-width: 320px;\r\n    padding: 0px 10px 0 0px;\r\n  }\r\n\r\n  .kudoEvent .event_cards-TVmode,\r\n  .kudoEvent .event_cards {\r\n    margin-left: 50px;\r\n  }\r\n}\r\n\r\n@media only screen and (max-width: 580px) {\r\n  .kudoEvent {\r\n    background: #0b1f39;\r\n    background: linear-gradient(140deg, #825640 0%, #0b1f39 100%);\r\n    flex-direction: column;\r\n    padding: 0px;\r\n    height: auto;\r\n  }\r\n\r\n  .kudoEvent .event_info {\r\n    width: 100%;\r\n    margin: 0;\r\n    padding: 7%;\r\n  }\r\n  \r\n  .kudoEvent .event_cards-TVmode,\r\n  .kudoEvent .event_cards {\r\n    width: 100%;\r\n    margin: 0;\r\n    padding: 7%;\r\n  }\r\n\r\n  .kudoEvent .event_cards-TVmode .card,\r\n  .kudoEvent .event_cards .card {\r\n    margin: 10px 0;\r\n    min-width: unset;\r\n    width: 100%;\r\n  }\r\n\r\n  .kudoEvent .event_cards-TVmode .card .card__text,\r\n  .kudoEvent .event_cards .card .card__text {\r\n    min-width: unset;\r\n  }\r\n\r\n  .kudoEvent .newCard {\r\n    display: none;\r\n  }\r\n}\r\n\r\n@keyframes popup {\r\n  0% {\r\n    transform: scale(0);\r\n  }\r\n  100% {\r\n    transform: scale(1);\r\n  }\r\n}", ""]);
 // Exports
 module.exports = exports;
 
@@ -1014,13 +1026,12 @@ class KudoEvent extends react_1.default.Component {
             shouldDisplayModal: false,
             nameList: [],
             nameListLoading: true,
-            show: false,
+            /*show: false, /*zmenaButton def show premennej*/
             role: client_2.getCookie('connect.role') /*zmenaKnight zistenie role*/
         };
         this.bind = {
             onCardListRefresh: this.onCardListRefresh.bind(this),
             onHideModal: this.onHideModal.bind(this),
-            ukaz: this.ukaz.bind(this) /*zmenaButton*/
         };
     }
     componentDidMount() {
@@ -1050,25 +1061,39 @@ class KudoEvent extends react_1.default.Component {
         window.clearTimeout(this.timeout);
     }
     render() {
-        const newCard = this.state.cards.length > 0 ? this.getCardProps(this.state.cards[this.state.cards.length - 1]) : undefined;
-        return this.state.event ? (react_1.default.createElement("div", { className: "kudoEvent" },
-            react_1.default.createElement("div", { className: "event_info" },
-                this.getEvent(),
-                this.getKnight(),
-                location.href.indexOf('?tv=true') > -1 ? (react_1.default.createElement(QRcode_1.default, { url: location.protocol + '//' + location.host + location.pathname })) : (react_1.default.createElement(KudoForm_1.default, { isLoading: this.state.nameListLoading, peopleList: this.state.nameList, eventId: this.eventId, isActive: this.state.is_active }))),
-            react_1.default.createElement("button", { type: "button", onClick: this.bind.ukaz }, "click me"),
-            react_1.default.createElement("div", { className: "event_cards" }, this.processCards()),
-            react_1.default.createElement(CardNotification_1.default, null),
-            this.state.shouldDisplayModal ? react_1.default.createElement(CardModal, { newCardProps: newCard, onClick: this.bind.onHideModal }) : null,
-            react_1.default.createElement(KudoSettings_1.default, null))) : (react_1.default.createElement("div", null));
+        if (location.href.indexOf('?tv=true') > -1) {
+            const newCard = this.state.cards.length > 0 ? this.getCardProps(this.state.cards[this.state.cards.length - 1]) : undefined;
+            return this.state.event ? (react_1.default.createElement("div", { className: "kudoEvent" },
+                react_1.default.createElement("div", { className: "event_info" },
+                    this.getEvent(),
+                    this.getKnight(),
+                    location.href.indexOf('?tv=true') > -1 ? (react_1.default.createElement(QRcode_1.default, { url: location.protocol + '//' + location.host + location.pathname })) : (react_1.default.createElement(KudoForm_1.default, { isLoading: this.state.nameListLoading, peopleList: this.state.nameList, eventId: this.eventId, isActive: this.state.is_active }))),
+                react_1.default.createElement("div", { className: "event_cards-TVmode" }, this.processCards()),
+                react_1.default.createElement(CardNotification_1.default, null),
+                this.state.shouldDisplayModal ? react_1.default.createElement(CardModal, { newCardProps: newCard, onClick: this.bind.onHideModal }) : null,
+                react_1.default.createElement(KudoSettings_1.default, null))) : (react_1.default.createElement("div", null));
+        }
+        else {
+            const newCard = this.state.cards.length > 0 ? this.getCardProps(this.state.cards[this.state.cards.length - 1]) : undefined;
+            return this.state.event ? (react_1.default.createElement("div", { className: "kudoEvent" },
+                react_1.default.createElement("div", { className: "event_info" },
+                    this.getEvent(),
+                    this.getKnight(),
+                    location.href.indexOf('?tv=true') > -1 ? (react_1.default.createElement(QRcode_1.default, { url: location.protocol + '//' + location.host + location.pathname })) : (react_1.default.createElement(KudoForm_1.default, { isLoading: this.state.nameListLoading, peopleList: this.state.nameList, eventId: this.eventId, isActive: this.state.is_active }))),
+                react_1.default.createElement("div", { className: "event_cards" }, this.processCards()),
+                react_1.default.createElement(CardNotification_1.default, null),
+                this.state.shouldDisplayModal ? react_1.default.createElement(CardModal, { newCardProps: newCard, onClick: this.bind.onHideModal }) : null,
+                react_1.default.createElement(KudoSettings_1.default, null))) : (react_1.default.createElement("div", null));
+        }
     }
     /*zmenaButton vytvorenie buttonu a funkcie ktora na neho odkazuje*/
     /*
-    <button type = "button" onClick = {this.bind.ukaz}>click me</button>
-    */
-    ukaz() {
-        this.setState({ show: !this.state.show });
+    <button type = "button" onClick = {this.bind.change_show}>click me</button>
+    
+    private change_show(): void {
+      this.setState({ show: !this.state.show });
     }
+    */
     onHideModal() {
         this.setState({ shouldDisplayModal: false });
     }
@@ -1081,7 +1106,7 @@ class KudoEvent extends react_1.default.Component {
             if (this.state.cards.length < data.length) {
                 document.dispatchEvent(new CustomEvent('kudoz::newNotification'));
             }
-            /*data.sort((a, b) => b.likes - a.likes);*/ /* zmenaSort*/
+            data.sort((a, b) => a.awardedTo.localeCompare(b.awardedTo)); /* zmenaSort*/
             this.setState({ cards: data });
         });
         api_1.select('/api/events', { _id: this.eventId })
@@ -1138,19 +1163,19 @@ class KudoEvent extends react_1.default.Component {
             cardID: card_data._id,
             cardType: card_data.type,
             eventID: card_data.eventId,
-            highlighted: this.isHighligted(card_data._id),
+            /*highlighted: this.isHighligted(card_data._id as string),*/
             isActive: this.state.is_active,
             likes: card_data.likes,
             text: card_data.text
         };
     }
-    isHighligted(cardId) {
-        return this.state.cards.map((card) => card._id).indexOf(cardId) < 7;
-    }
+    /*private isHighligted(cardId: string): boolean {
+      return this.state.cards.map((card) => card._id).indexOf(cardId) < 7;
+    }*/
     getKnight() {
         // TODO get most frequent name from array
         const list = client_1.getKudoNumberList(this.state.cards);
-        if (this.state.role === 'admin' || this.state.is_active === false || this.state.show === true) { /*zmenaKnight if*/
+        if (this.state.role === 'admin' || this.state.is_active === false) { /*zmenaKnight if*/ /*zmenaButton || this.state.show === true*/
             return (react_1.default.createElement("div", { style: { position: 'relative' } },
                 react_1.default.createElement("div", { className: "kudo-info-points", title: list.map((person) => `${person.name}:${person.count}`).join(', ') }, "i"),
                 react_1.default.createElement(Knight_1.Knight, Object.assign({}, { mostKudos: client_1.getKudoKnight(list) }))));

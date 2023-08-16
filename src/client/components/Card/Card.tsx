@@ -10,7 +10,7 @@ export interface Props {
   awarded: string;
   cardID?: string;
   eventID: string;
-  highlighted: boolean;
+  /*highlighted: boolean;*/
   likes: number;
   text: string;
   cardType: CARD_TYPE;
@@ -32,19 +32,38 @@ export default class Card extends Component<Props, State> {
   }
 
   public render(): JSX.Element {
-    return (
-      <div className="card">
-        <div className="card__icon">
-          <CardIcon cardType={this.props.cardType} />
+    if(location.href.indexOf('?tv=true') > -1){ /*ak je TV mode*/
+      return (
+        <div className="card">
+          <div className="card__icon">
+            <CardIcon cardType={this.props.cardType} />
+          </div>
+          <div className={'card__text-TVmode'}>
+            <h3>{this.props.awarded}</h3>
+            <p>{this.props.text}</p>
+          </div>
+          {this.getVoteButton()}
         </div>
-        <div className={this.props.highlighted ? 'card__text-highlighted ' : 'card__text'}>
-          <h3>{this.props.awarded}</h3>
-          <p>{this.props.text}</p>
+      );
+    }
+
+    else{ /*ak nie je TV mode*/
+      return (
+        <div className="card">
+          <div className="card__icon">
+            <CardIcon cardType={this.props.cardType} />
+          </div>
+          <div className={'card__text'}>
+            <h3>{this.props.awarded}</h3>
+            <p>{this.props.text}</p>
+          </div>
+          {this.getVoteButton()}
         </div>
-        {this.getVoteButton()}
-      </div>
-    );
+      );
+    }
   }
+
+/*40    <div className={this.props.highlighted ? 'card__text-highlighted ' : 'card__text__TVmode'}>*/
 
   private vote = (event: any) => {
     const eventID = event.currentTarget.dataset.eventid;
