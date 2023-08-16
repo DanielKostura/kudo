@@ -47,7 +47,7 @@ export default class KudoEvent extends React.Component<{}, IState> {
   private bind: {
     onCardListRefresh: EventListener;
     onHideModal: () => void;
-    /*ukaz: () => void; /*zmenaButton pridanie typ outputu ukaz funkcie*/
+    /*change_show: () => void; /*zmenaButton pridanie typ outputu change_show funkcie*/
   };
 
   constructor(props: any) {
@@ -60,14 +60,14 @@ export default class KudoEvent extends React.Component<{}, IState> {
       shouldDisplayModal: false,
       nameList: [],
       nameListLoading: true,
-      /*show: false,*/ /*zmenaButton def show premennej*/
+      /*show: false, /*zmenaButton def show premennej*/
       role: getCookie('connect.role') /*zmenaKnight zistenie role*/
     };
 
     this.bind = {
       onCardListRefresh: this.onCardListRefresh.bind(this) as EventListener,
       onHideModal: this.onHideModal.bind(this),
-      /*ukaz: this.ukaz.bind(this) /*zmenaButton*/
+      /*change_show: this.change_show.bind(this) /*zmenaButton*/
     };
   }
 
@@ -127,9 +127,11 @@ export default class KudoEvent extends React.Component<{}, IState> {
     );
   }
 
-  /*zmenaButton vytvorenie buttonu a funkcie ktora na neho odkazuje
-  <button type = "button" onClick = {this.bind.ukaz}>click me</button>
-  private ukaz(): void { 
+  /*zmenaButton vytvorenie buttonu a funkcie ktora na neho odkazuje*/
+  /*
+  <button type = "button" onClick = {this.bind.change_show}>click me</button>
+  
+  private change_show(): void { 
     this.setState({ show: !this.state.show });
   }
   */
@@ -230,7 +232,7 @@ export default class KudoEvent extends React.Component<{}, IState> {
   private getKnight(): JSX.Element {
     // TODO get most frequent name from array
     const list = getKudoNumberList(this.state.cards);
-    if(this.state.role === 'admin' || this.state.is_active === false){ /*zmenaKnight if*/
+    if(this.state.role === 'admin' || this.state.is_active === false){ /*zmenaKnight if*/ /*zmenaButton || this.state.show === true*/
       return (
         <div style={{position: 'relative'}}>
           <div className="kudo-info-points" title={list.map((person) => `${person.name}:${person.count}`).join(', ')}>i</div>

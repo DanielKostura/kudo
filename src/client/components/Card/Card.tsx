@@ -81,7 +81,7 @@ export default class Card extends Component<Props, State> {
     return;
   };
   
-  private getVoteButton() { /*zmena pridanie if*/
+  private getVoteButton() { /*zmenaLikeszmena pridanie if*/
     if (this.props.isActive === false) { /*ked je event neaktivny pre vsetkych*/
         return (
         <div className="card__likes-noVote" title="event is inactive"> 
@@ -127,7 +127,7 @@ export default class Card extends Component<Props, State> {
             data-eventid={this.props.eventID}
             data-cardid={this.props.cardID!}
             className="card__likes"
-            title="vote!!!">
+            title="vote">
             {this.props.likes}
           </div>
         );
