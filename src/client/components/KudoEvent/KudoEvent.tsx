@@ -25,6 +25,7 @@ interface IState {
   nameListLoading: boolean;
   role: string | false; /*zmenaKnight pridanie typu role*/
   show: boolean; /*zmenaButton pridanie typu premennej*/
+  is_two_weeks: boolean;
 }
 
 function CardModal({ newCardProps, onClick }: any) {
@@ -61,6 +62,7 @@ export default class KudoEvent extends React.Component<{}, IState> {
       nameList: [],
       nameListLoading: true,
       show: false, /*zmenaButton def show premennej*/
+      is_two_weeks: false,
       role: getCookie('connect.role') /*zmenaKnight zistenie role*/
     };
 
@@ -154,9 +156,6 @@ export default class KudoEvent extends React.Component<{}, IState> {
   }
   
   /*zmenaButton vytvorenie buttonu a funkcie ktora na neho odkazuje*/
-  /*
-  <button type = "button" onClick = {this.bind.change_show}>click me</button>*/
-  
   private changeShow(): void { 
     this.setState({ show: !this.state.show });
     this.getData();
@@ -171,9 +170,7 @@ export default class KudoEvent extends React.Component<{}, IState> {
   }
 
   private getData() {
-    
     const now = new Date().getTime();
-
     select<I.Card[]>('/api/cards', { eventId: this.eventId }).then((data) => {
       if (this.state.cards.length < data.length) {
         document.dispatchEvent(new CustomEvent('kudoz::newNotification'));
@@ -194,6 +191,7 @@ export default class KudoEvent extends React.Component<{}, IState> {
         this.setState({
           event,
           is_active: event.dateFrom < now && now < event.dateTo,
+          is_two_weeks: now > event.dateTo + 14*24*60*60*1000
         });
         this.loadNameList(event.userId);
       })
@@ -253,14 +251,24 @@ export default class KudoEvent extends React.Component<{}, IState> {
       isActive: this.state.is_active,
       likes: card_data.likes,
       text: card_data.text,
-      Show: this.state.show
+      Show: this.state.show,
+      isTwoWeeks: this.state.is_two_weeks
     };
   }
 
   private getKnight(): JSX.Element {
     // TODO get most frequent name from array
     const list = getKudoNumberList(this.state.cards);
-      if(this.state.role === 'admin' && this.state.show === true){ /*zmenaKnight if*/ /*zmenaButton || this.state.show === true*/
+      if(this.state.is_two_weeks){
+        return (
+          <div style={{position: 'relative'}}>
+            <div className="kudo-info-points" title={list.map((person) => `${person.name}:${person.count}`).join(', ')} >i</div>
+            <Knight {...{ mostKudos: getKudoKnight(list) }} />
+          </div>
+        );
+      }
+
+      else if(this.state.role === 'admin' && this.state.show === true){ /*zmenaKnight if*/ /*zmenaButton || this.state.show === true*/
         return (
           <div style={{position: 'relative'}} onClick = {this.bind.changeShow}>
             <div className="kudo-info-points" title={list.map((person) => `${person.name}:${person.count}`).join(', ')} >i</div>

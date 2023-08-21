@@ -14,6 +14,7 @@ export interface Props {
   cardType: CARD_TYPE;
   isActive: boolean;
   Show: boolean;
+  isTwoWeeks: boolean;
 }
 
 export interface State {
@@ -84,7 +85,15 @@ export default class Card extends Component<Props, State> {
   
 
   private getVoteButton() { /*zmenaLikeszmena pridanie if*/
-    if (this.props.Show === true && this.state.role === 'admin' && this.props.isActive === true) {
+    if(this.props.isTwoWeeks === true){
+      return (
+        <div className="card__likes-noVote" title="event is inactive">
+          {this.props.likes}
+        </div>
+      );
+    }
+
+    else if (this.props.Show === true && this.state.role === 'admin' && this.props.isActive === true) {
       if(this.yourChoice(this.props.eventID, this.props.cardID!)){
         return (
           <div className="card__likes-yourChoice" title="your choice">

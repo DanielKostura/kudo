@@ -512,7 +512,10 @@ class Card extends react_1.Component {
             this.getVoteButton()));
     }
     getVoteButton() {
-        if (this.props.Show === true && this.state.role === 'admin' && this.props.isActive === true) {
+        if (this.props.isTwoWeeks === true) {
+            return (react_1.default.createElement("div", { className: "card__likes-noVote", title: "event is inactive" }, this.props.likes));
+        }
+        else if (this.props.Show === true && this.state.role === 'admin' && this.props.isActive === true) {
             if (this.yourChoice(this.props.eventID, this.props.cardID)) {
                 return (react_1.default.createElement("div", { className: "card__likes-yourChoice", title: "your choice" }, this.props.likes));
             }
@@ -1019,6 +1022,7 @@ class KudoEvent extends react_1.default.Component {
             nameList: [],
             nameListLoading: true,
             show: false,
+            is_two_weeks: false,
             role: client_2.getCookie('connect.role') /*zmenaKnight zistenie role*/
         };
         this.bind = {
@@ -1080,8 +1084,6 @@ class KudoEvent extends react_1.default.Component {
         }
     }
     /*zmenaButton vytvorenie buttonu a funkcie ktora na neho odkazuje*/
-    /*
-    <button type = "button" onClick = {this.bind.change_show}>click me</button>*/
     changeShow() {
         this.setState({ show: !this.state.show });
         this.getData();
@@ -1112,6 +1114,7 @@ class KudoEvent extends react_1.default.Component {
             this.setState({
                 event,
                 is_active: event.dateFrom < now && now < event.dateTo,
+                is_two_weeks: now > event.dateTo + 14 * 24 * 60 * 60 * 1000
             });
             this.loadNameList(event.userId);
         })
@@ -1163,13 +1166,19 @@ class KudoEvent extends react_1.default.Component {
             isActive: this.state.is_active,
             likes: card_data.likes,
             text: card_data.text,
-            Show: this.state.show
+            Show: this.state.show,
+            isTwoWeeks: this.state.is_two_weeks
         };
     }
     getKnight() {
         // TODO get most frequent name from array
         const list = client_1.getKudoNumberList(this.state.cards);
-        if (this.state.role === 'admin' && this.state.show === true) { /*zmenaKnight if*/ /*zmenaButton || this.state.show === true*/
+        if (this.state.is_two_weeks) {
+            return (react_1.default.createElement("div", { style: { position: 'relative' } },
+                react_1.default.createElement("div", { className: "kudo-info-points", title: list.map((person) => `${person.name}:${person.count}`).join(', ') }, "i"),
+                react_1.default.createElement(Knight_1.Knight, Object.assign({}, { mostKudos: client_1.getKudoKnight(list) }))));
+        }
+        else if (this.state.role === 'admin' && this.state.show === true) { /*zmenaKnight if*/ /*zmenaButton || this.state.show === true*/
             return (react_1.default.createElement("div", { style: { position: 'relative' }, onClick: this.bind.changeShow },
                 react_1.default.createElement("div", { className: "kudo-info-points", title: list.map((person) => `${person.name}:${person.count}`).join(', ') }, "i"),
                 react_1.default.createElement(Knight_1.Knight, Object.assign({}, { mostKudos: client_1.getKudoKnight(list) }))));
