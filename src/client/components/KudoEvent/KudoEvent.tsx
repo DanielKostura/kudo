@@ -18,13 +18,13 @@ const REFRESH = 15 * 1000; // 60 seconds
 
 interface IState {
   cards: I.Card[];
-  event: I.Event | undefined;
+  event: I.Event | undefined; /*event: I.Event | undefined;*/
   is_active: boolean;
   shouldDisplayModal: boolean;
   nameList: I.People[];
   nameListLoading: boolean;
   role: string | false; /*zmenaKnight pridanie typu role*/
-  /*show: boolean; /*zmenaButton pridanie typu premennej*/
+  show: boolean; /*zmenaButton pridanie typu premennej*/
 }
 
 function CardModal({ newCardProps, onClick }: any) {
@@ -47,7 +47,7 @@ export default class KudoEvent extends React.Component<{}, IState> {
   private bind: {
     onCardListRefresh: EventListener;
     onHideModal: () => void;
-    /*change_show: () => void; /*zmenaButton pridanie typ outputu change_show funkcie*/
+    changeShow: () => void; /*zmenaButton pridanie typ outputu changeShow funkcie*/
   };
 
   constructor(props: any) {
@@ -60,14 +60,14 @@ export default class KudoEvent extends React.Component<{}, IState> {
       shouldDisplayModal: false,
       nameList: [],
       nameListLoading: true,
-      /*show: false, /*zmenaButton def show premennej*/
+      show: false, /*zmenaButton def show premennej*/
       role: getCookie('connect.role') /*zmenaKnight zistenie role*/
     };
 
     this.bind = {
       onCardListRefresh: this.onCardListRefresh.bind(this) as EventListener,
       onHideModal: this.onHideModal.bind(this),
-      /*change_show: this.change_show.bind(this) /*zmenaButton*/
+      changeShow: this.changeShow.bind(this) /*zmenaButton*/
     };
   }
 
@@ -152,16 +152,16 @@ export default class KudoEvent extends React.Component<{}, IState> {
       );
     }
   }
-
+  
   /*zmenaButton vytvorenie buttonu a funkcie ktora na neho odkazuje*/
   /*
-  <button type = "button" onClick = {this.bind.change_show}>click me</button>
+  <button type = "button" onClick = {this.bind.change_show}>click me</button>*/
   
-  private change_show(): void { 
+  private changeShow(): void { 
     this.setState({ show: !this.state.show });
+    this.getData();
   }
-  */
-
+  
   private onHideModal(): void {
     this.setState({ shouldDisplayModal: false });
   }
@@ -171,6 +171,7 @@ export default class KudoEvent extends React.Component<{}, IState> {
   }
 
   private getData() {
+    
     const now = new Date().getTime();
 
     select<I.Card[]>('/api/cards', { eventId: this.eventId }).then((data) => {
@@ -178,7 +179,12 @@ export default class KudoEvent extends React.Component<{}, IState> {
         document.dispatchEvent(new CustomEvent('kudoz::newNotification'));
       }
 
-      data.sort((a, b) => a.awardedTo.localeCompare(b.awardedTo));/* zmenaSort*/
+      if(this.state.show === true && this.state.role === 'admin'){
+        data.sort((a, b) => b.likes - a.likes);
+      }
+      else{/*zmenaSort*/
+      data.sort((a, b) => a.awardedTo.localeCompare(b.awardedTo));
+      }
       this.setState({ cards: data });
     });
 
@@ -187,7 +193,7 @@ export default class KudoEvent extends React.Component<{}, IState> {
         const event = data[0];
         this.setState({
           event,
-          is_active: event.dateFrom < now && now < event.dateTo
+          is_active: event.dateFrom < now && now < event.dateTo,
         });
         this.loadNameList(event.userId);
       })
@@ -244,36 +250,39 @@ export default class KudoEvent extends React.Component<{}, IState> {
       cardID: card_data._id,
       cardType: card_data.type,
       eventID: card_data.eventId,
-      /*highlighted: this.isHighligted(card_data._id as string),*/
       isActive: this.state.is_active,
       likes: card_data.likes,
-      text: card_data.text
+      text: card_data.text,
+      Show: this.state.show
     };
   }
-
-  /*private isHighligted(cardId: string): boolean {
-    return this.state.cards.map((card) => card._id).indexOf(cardId) < 7;
-  }*/
 
   private getKnight(): JSX.Element {
     // TODO get most frequent name from array
     const list = getKudoNumberList(this.state.cards);
-    if(this.state.role === 'admin' || this.state.is_active === false){ /*zmenaKnight if*/ /*zmenaButton || this.state.show === true*/
-      return (
-        <div style={{position: 'relative'}}>
-          <div className="kudo-info-points" title={list.map((person) => `${person.name}:${person.count}`).join(', ')}>i</div>
-          <Knight {...{ mostKudos: getKudoKnight(list) }} />
-        </div>
-      );
+      if(this.state.role === 'admin' && this.state.show === true){ /*zmenaKnight if*/ /*zmenaButton || this.state.show === true*/
+        return (
+          <div style={{position: 'relative'}} onClick = {this.bind.changeShow}>
+            <div className="kudo-info-points" title={list.map((person) => `${person.name}:${person.count}`).join(', ')} >i</div>
+            <Knight {...{ mostKudos: getKudoKnight(list) }} />
+          </div>
+        );
+      }
 
-    }
-    else{
-      return (
-        <div style={{position: 'relative'}}>
-          <KnightForUser {...{ mostKudos: getKudoKnight(list) }} />
-        </div>
-      );
-    }
-
+      else if(this.state.role === 'admin' && this.state.show === false){ /*zmenaKnight if*/ /*zmenaButton || this.state.show === true*/
+        return (
+            <div style={{position: 'relative'}} onClick = {this.bind.changeShow}>
+              <KnightForUser {...{ mostKudos: getKudoKnight(list) }} />
+            </div>
+          );
+      }
+  
+      else{
+        return (
+          <div style={{position: 'relative'}}>
+            <KnightForUser {...{ mostKudos: getKudoKnight(list) }} />
+          </div>
+        );
+      }
   }
 }

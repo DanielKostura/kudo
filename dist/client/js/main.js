@@ -503,44 +503,36 @@ class Card extends react_1.Component {
         };
     }
     render() {
-        if (location.href.indexOf('?tv=true') > -1) { /*ak je TV mode*/
-            return (react_1.default.createElement("div", { className: "card" },
-                react_1.default.createElement("div", { className: "card__icon" },
-                    react_1.default.createElement(CardIcon_1.CardIcon, { cardType: this.props.cardType })),
-                react_1.default.createElement("div", { className: 'card__text-TVmode' },
-                    react_1.default.createElement("h3", null, this.props.awarded),
-                    react_1.default.createElement("p", null, this.props.text)),
-                this.getVoteButton()));
-        }
-        else { /*ak nie je TV mode*/
-            return (react_1.default.createElement("div", { className: "card" },
-                react_1.default.createElement("div", { className: "card__icon" },
-                    react_1.default.createElement(CardIcon_1.CardIcon, { cardType: this.props.cardType })),
-                react_1.default.createElement("div", { className: 'card__text' },
-                    react_1.default.createElement("h3", null, this.props.awarded),
-                    react_1.default.createElement("p", null, this.props.text)),
-                this.getVoteButton()));
-        }
+        return (react_1.default.createElement("div", { className: "card" },
+            react_1.default.createElement("div", { className: "card__icon" },
+                react_1.default.createElement(CardIcon_1.CardIcon, { cardType: this.props.cardType })),
+            react_1.default.createElement("div", { className: location.href.indexOf('?tv=true') > -1 ? 'card__text-TVmode' : 'card__text' },
+                react_1.default.createElement("h3", null, this.props.awarded),
+                react_1.default.createElement("p", null, this.props.text)),
+            this.getVoteButton()));
     }
     getVoteButton() {
-        if (this.props.isActive === false) { /*ked je event neaktivny pre vsetkych*/
+        if (this.props.Show === true && this.state.role === 'admin' && this.props.isActive === true) {
+            if (this.yourChoice(this.props.eventID, this.props.cardID)) {
+                return (react_1.default.createElement("div", { className: "card__likes-yourChoice", title: "your choice" }, this.props.likes));
+            }
+            else {
+                return (react_1.default.createElement("div", { onClick: this.vote, "data-eventid": this.props.eventID, "data-cardid": this.props.cardID, className: "card__likes", title: "vote" }, this.props.likes));
+            }
+        }
+        else if (this.props.Show === true && this.state.role === "admin" && this.props.isActive === false) {
             return (react_1.default.createElement("div", { className: "card__likes-noVote", title: "event is inactive" }, this.props.likes));
         }
-        else if (this.state.role != "admin") { /*ked si user*/
-            if (this.yourChoice(this.props.eventID, this.props.cardID)) { /* user po liku*/
+        else if (this.props.isActive === true) {
+            if (this.yourChoice(this.props.eventID, this.props.cardID)) {
                 return (react_1.default.createElement("div", { className: "card__likes-yourChoice", title: "your choice" }));
             }
-            else { /* user pred likom*/
+            else {
                 return (react_1.default.createElement("div", { onClick: this.vote, "data-eventid": this.props.eventID, "data-cardid": this.props.cardID, className: "card__likes", title: "vote" }));
             }
         }
-        else { /*ked si admin*/
-            if (this.yourChoice(this.props.eventID, this.props.cardID)) { /*admin po liku*/
-                return (react_1.default.createElement("div", { className: "card__likes-yourChoice", title: "your choice" }, this.props.likes));
-            }
-            else { /*admin pred likom*/
-                return (react_1.default.createElement("div", { onClick: this.vote, "data-eventid": this.props.eventID, "data-cardid": this.props.cardID, className: "card__likes", title: "vote" }, this.props.likes));
-            }
+        else {
+            return (react_1.default.createElement("div", { className: "card__likes-noVote", title: "event is inactive" }));
         }
     }
     alreadyVoted(eventID, cardID) {
@@ -1026,12 +1018,13 @@ class KudoEvent extends react_1.default.Component {
             shouldDisplayModal: false,
             nameList: [],
             nameListLoading: true,
-            /*show: false, /*zmenaButton def show premennej*/
+            show: false,
             role: client_2.getCookie('connect.role') /*zmenaKnight zistenie role*/
         };
         this.bind = {
             onCardListRefresh: this.onCardListRefresh.bind(this),
             onHideModal: this.onHideModal.bind(this),
+            changeShow: this.changeShow.bind(this) /*zmenaButton*/
         };
     }
     componentDidMount() {
@@ -1088,12 +1081,11 @@ class KudoEvent extends react_1.default.Component {
     }
     /*zmenaButton vytvorenie buttonu a funkcie ktora na neho odkazuje*/
     /*
-    <button type = "button" onClick = {this.bind.change_show}>click me</button>
-    
-    private change_show(): void {
-      this.setState({ show: !this.state.show });
+    <button type = "button" onClick = {this.bind.change_show}>click me</button>*/
+    changeShow() {
+        this.setState({ show: !this.state.show });
+        this.getData();
     }
-    */
     onHideModal() {
         this.setState({ shouldDisplayModal: false });
     }
@@ -1106,7 +1098,12 @@ class KudoEvent extends react_1.default.Component {
             if (this.state.cards.length < data.length) {
                 document.dispatchEvent(new CustomEvent('kudoz::newNotification'));
             }
-            data.sort((a, b) => a.awardedTo.localeCompare(b.awardedTo)); /* zmenaSort*/
+            if (this.state.show === true && this.state.role === 'admin') {
+                data.sort((a, b) => b.likes - a.likes);
+            }
+            else { /*zmenaSort*/
+                data.sort((a, b) => a.awardedTo.localeCompare(b.awardedTo));
+            }
             this.setState({ cards: data });
         });
         api_1.select('/api/events', { _id: this.eventId })
@@ -1114,7 +1111,7 @@ class KudoEvent extends react_1.default.Component {
             const event = data[0];
             this.setState({
                 event,
-                is_active: event.dateFrom < now && now < event.dateTo
+                is_active: event.dateFrom < now && now < event.dateTo,
             });
             this.loadNameList(event.userId);
         })
@@ -1163,22 +1160,23 @@ class KudoEvent extends react_1.default.Component {
             cardID: card_data._id,
             cardType: card_data.type,
             eventID: card_data.eventId,
-            /*highlighted: this.isHighligted(card_data._id as string),*/
             isActive: this.state.is_active,
             likes: card_data.likes,
-            text: card_data.text
+            text: card_data.text,
+            Show: this.state.show
         };
     }
-    /*private isHighligted(cardId: string): boolean {
-      return this.state.cards.map((card) => card._id).indexOf(cardId) < 7;
-    }*/
     getKnight() {
         // TODO get most frequent name from array
         const list = client_1.getKudoNumberList(this.state.cards);
-        if (this.state.role === 'admin' || this.state.is_active === false) { /*zmenaKnight if*/ /*zmenaButton || this.state.show === true*/
-            return (react_1.default.createElement("div", { style: { position: 'relative' } },
+        if (this.state.role === 'admin' && this.state.show === true) { /*zmenaKnight if*/ /*zmenaButton || this.state.show === true*/
+            return (react_1.default.createElement("div", { style: { position: 'relative' }, onClick: this.bind.changeShow },
                 react_1.default.createElement("div", { className: "kudo-info-points", title: list.map((person) => `${person.name}:${person.count}`).join(', ') }, "i"),
                 react_1.default.createElement(Knight_1.Knight, Object.assign({}, { mostKudos: client_1.getKudoKnight(list) }))));
+        }
+        else if (this.state.role === 'admin' && this.state.show === false) { /*zmenaKnight if*/ /*zmenaButton || this.state.show === true*/
+            return (react_1.default.createElement("div", { style: { position: 'relative' }, onClick: this.bind.changeShow },
+                react_1.default.createElement(Knight_1.KnightForUser, Object.assign({}, { mostKudos: client_1.getKudoKnight(list) }))));
         }
         else {
             return (react_1.default.createElement("div", { style: { position: 'relative' } },
